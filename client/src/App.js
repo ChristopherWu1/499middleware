@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios';
 function App() {
   const [backendData, setBackendData] = useState([{}])
 
@@ -79,14 +78,22 @@ function App() {
       <p>{secondBackendData.number}</p>
       <form onSubmit={HandleSubmit}>
         <label>
-          Enter first num: <input type="number" onChange={e => setNum1(e.target.value)} />
+          Enter name: <input type="text" onChange={e => setNum1(e.target.value)} />
         </label>
+        <br/>
         <label>
-          Enter second num: <input type="number" onChange={e => setNum2(e.target.value)} />
+          Enter exercise: <input type="text" onChange={e => setNum2(e.target.value)} />
         </label>
         <input type="submit" value="Submit"></input>
       </form>
-      <h1>sum:{sum.sum} </h1>
+      <h1>sum:{sum.sum}</h1>
+      {(typeof sum.sum === 'undefined') ? (
+        <p></p>
+      ) : (
+        sum.sum.map((val, i) => (
+          <p key={i}>{val}</p>
+        ))
+      )}
     </div>
   )
 }
