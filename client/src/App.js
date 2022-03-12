@@ -27,8 +27,9 @@ function App() {
   })
   const [num1, setNum1] = useState([{}]);
   const [num2, setNum2] = useState([{}]);
+  const [num3, setNum3] = useState([{}]);
   const [sum, setSum] = useState([{}]);
-  var nums = { "num1": num1, "num2": num2 };
+  var nums = { "num1": num1, "num2": num2,"num3": num3 };
   //react function components must start with capitalized letters
   var HandleSubmit = function (event) {
     event.preventDefault();
@@ -84,9 +85,20 @@ function App() {
         <label>
           Enter exercise: <input type="text" onChange={e => setNum2(e.target.value)} />
         </label>
+        <br/>
+        <label>
+          Pick your preference:
+          <select onChange={e => setNum3(e.target.value)}>
+            <option value="Target Area">Target Area</option>
+            <option value="Target Muscle">Target Muscle</option>
+            <option value="Exercise Category">Exercise Category</option>
+            <option value="Difficulty">Difficulty</option>
+          </select>
+        </label>
+
         <input type="submit" value="Submit"></input>
       </form>
-      <h1>sum:{sum.sum}</h1>
+      
       {(typeof sum.sum === 'undefined') ? (
         <p></p>
       ) : (

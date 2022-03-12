@@ -27,8 +27,10 @@ app.post('/data',/*cors(corsOptions),*/(req, res) => {
     console.log(num1);
     var num2 = req.body.num2;
     console.log(num2);
+    var num3 = req.body.num3;
+    console.log(num3);
     //call python script
-    const python = spawn('python', ['algorithms.py', num1, num2]);
+    const python = spawn('python', ['algorithms2.py', num1, num2,num3]);
     python.stdout.on('data', function (data) {
         dataToSend = data.toString().split(',');
         console.log(typeof dataToSend);
