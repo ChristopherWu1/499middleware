@@ -12,25 +12,56 @@ import sys
 print('test')
 
 tf = TfidfVectorizer(analyzer='word',ngram_range=(1, 2),min_df=0, stop_words='english') #transforms text to feature vectors that can be used as input to estimator.
-exercises  = pd.read_csv('exercises.csv')
-exercises = exercises.dropna()
-exercises["Name"] = exercises["Name"].str.lower() #standardize names 
 
+
+
+exercises =  pd.read_csv('exercises2.csv')
+exercises = exercises.drop(columns=['Location', 'Push or Pull', 'Equipment Type( bar ,bodyweight, barbell , machine , kettlebell, dumbell , specific )'])
 #print(exercises)
-tfidf_matrix = tf.fit_transform(exercises['General Target Area']) #gets if-idf values 
-cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix) #calculate a numeric quantity that denotes the similarity between two movies. Higher the cosine value, the more similar the terms are
-
-#get value for  exercise category
-tfidf_matrix2 = tf.fit_transform(exercises['Exercise Category'])
-cosine_sim2 = linear_kernel(tfidf_matrix2, tfidf_matrix2)
-
-#get values for average of general target area and exercise category similarity
-cosine_sim3 = (cosine_sim + cosine_sim2) / 2
-
-
 titles = exercises['Name']
 indices = pd.Series(exercises.index, index = exercises['Name'])
+exercises["Name"] = exercises["Name"].str.lower() #standardize names 
+arr = ['Cable Pull Through','Kettle Bell Swings','Pull-ups']
+
 #print(indices)
+
+def create_cosine_similarities(categories,weight = None):
+    if weight == None:
+        weight = np.full(len(categories),1/len(categories))
+    
+    if len(categories) > 1:
+        #print('multiple weights are involved')
+        sims = []
+        for x in categories:
+            tfidf_matrix = tf.fit_transform(exercises[x])
+            cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
+            sims.append(cosine_sim)
+        weighted_sim = sims[0] * weight[0]
+        theCount = 0
+        for x,y in zip(sims,weight):
+            if theCount > 0:
+                #print(x,y)
+                weighted_sim = weighted_sim +  (x * y)
+            theCount = theCount + 1
+        #weighted_sim = weighted_sim / len(sims)
+        return weighted_sim
+    elif categories[0] == 'Difficulty':
+        theList = exercises['Difficulty'].tolist()
+        #print(theList)
+        list2 = []
+        for x in theList:
+            #print(x[:-1])
+            if(x[-1].isspace()):
+                list2.append(x[:-1])
+            else:
+                list2.append(x)
+        #print(list2)
+        cosine_sim = convert_difficulty(list2)
+        return cosine_sim
+    else:
+        tfidf_matrix = tf.fit_transform(exercises[categories[0]]) #gets if-idf values
+        cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix) #calculate a numeric quantity that denotes the similarity between two movies. Higher the cosine value, the more similar the terms are
+        return cosine_sim
 
 
 #function that determines similarity between difficulties
@@ -115,7 +146,7 @@ def give_set_recommendations(title,sim):
     '''
     count = 0
     for x in names2:
-        print(x)
+        #print(x)
         if x in set_exercises or x in arr2:
             print('exericse already in template')
         else:
@@ -125,9 +156,10 @@ def give_set_recommendations(title,sim):
     return arr2[:3]+ set_exercises
 
 #print(target_recommendations('Deadlift'))
-exercise_name = sys.argv[2].lower() #standardize exercise name
-print('Hello  ',sys.argv[1],'. These are the exercises similar to ', exercise_name, ":") 
 
+exercise_name = sys.argv[2].lower() #standardize exercise name
+print('Hello  ',sys.argv[1],'. These are the exercises similar to ', exercise_name, 'using',sys.argv[3].lower() ,"as the similarity:,") 
+'''
 #print(target_recommendations(exercise_name))
 outputs = target_recommendations(exercise_name,cosine_sim)
 for x in outputs:
@@ -147,3 +179,42 @@ for x in outputs:
     print(x,",")
 
 #print(outputs)
+'''
+
+arr = []
+arr.append(sys.argv[3])
+
+outputs =target_recommendations(exercise_name,create_cosine_similarities(arr))
+for x in outputs:
+    print(x,",")
+print('-------------------,')
+
+
+'''
+outputs = target_recommendations(exercise_name,create_cosine_similarities(['Target Area']))
+for x in outputs:
+    print(x,",")
+print('-------------------,')
+
+outputs = target_recommendations(exercise_name,create_cosine_similarities(['Exercise Category']))
+for x in outputs:
+    print(x,",")
+print('-------------------,')
+
+outputs = target_recommendations(exercise_name,create_cosine_similarities(['Difficulty']))
+for x in outputs:
+    print(x,",")
+print('-------------------,')
+
+outputs =target_recommendations(exercise_name,create_cosine_similarities(['Target Area','Exercise Category'],[0.5,0.5]))
+for x in outputs:
+    print(x,",")
+print('-------------------,')
+
+outputs =target_recommendations(exercise_name,create_cosine_similarities(['Target Area','Exercise Category']))
+for x in outputs:
+    print(x,",")
+print('-------------------,')
+
+'''
+
