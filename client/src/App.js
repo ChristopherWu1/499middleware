@@ -5,7 +5,7 @@ function App() {
   useEffect(() => {
 
     // fetch api from backend
-    fetch('/api').then(
+    fetch('http://localhost:5000/api').then(
       //whatever response we get from the api it will be in json format
       response => response.json()
     ).then(
@@ -17,7 +17,7 @@ function App() {
   }, []/*[] it makes sure to start only on the first render of the page*/);
   const [secondBackendData, setSecondBackendData] = useState([{}])
   useEffect(() => {
-    fetch('/home').then(
+    fetch('http://localhost:5000/home').then(
       response => response.json()
     ).then(
       data => {
