@@ -17,6 +17,7 @@ tf = TfidfVectorizer(analyzer='word',ngram_range=(1, 2),min_df=0, stop_words='en
 
 exercises =  pd.read_csv('exercises2.csv')
 exercises = exercises.drop(columns=['Location', 'Push or Pull', 'Equipment Type( bar ,bodyweight, barbell , machine , kettlebell, dumbell , specific )'])
+exercises[exercises.columns] = exercises.apply(lambda x: x.str.rstrip())
 #print(exercises)
 titles = exercises['Name']
 indices = pd.Series(exercises.index, index = exercises['Name'])
@@ -147,10 +148,10 @@ def give_set_recommendations(title,sim):
     count = 0
     for x in names2:
         #print(x)
-        if x in set_exercises or x in arr2:
-            print('exericse already in template')
+        if  x in set_exercises or x in arr2:
+            print('')
         else:
-            print('exericse pushed into array')
+            #print('exericse pushed into array')
             arr2.append(x)
         
     return arr2[:3]+ set_exercises
@@ -188,6 +189,49 @@ outputs =target_recommendations(exercise_name,create_cosine_similarities(arr))
 for x in outputs:
     print(x,",")
 print('-------------------,')
+print('These are the recommendations with pre-set exercises,')
+outputs =give_set_recommendations(exercise_name,create_cosine_similarities(arr))
+for x in outputs:
+    print(x,",")
+print('-------------------,')
+
+
+list_of_excercises = pd.read_csv('listExercises.csv')#read exercise list
+list_of_excercises = list_of_excercises.applymap(lambda x: x.rstrip() if isinstance(x, str) else x)#get rid of trailing spaces
+#print(list_of_excercises)
+
+def getTop5ByRatings():
+    #print(list_of_excercises)
+    means = list_of_excercises.groupby(['Exercise']).mean()#group by excerise and get the means
+    #print(means.columns)
+    rating_descending = means.sort_values(by=['Rating'], ascending=False)#sort by the ratings in descending order
+    #print(lols['Exercise'][:5])
+    #print(rating_descending[:5])
+    top5_ratings_scores  = rating_descending['Rating'][:5]
+    #print(top5_ratings_scores)
+    
+    for x,y in zip(top5_ratings_scores.index,top5_ratings_scores):
+        print(x,y,",")
+    
+    return 
+
+
+
+def getTop5ByCount():
+    counts =  list_of_excercises.groupby(['Exercise']).size().reset_index(name='count')
+    #print(counts)
+    count_descending = counts.sort_values(by=['count'], ascending=False)#sort by the ratings in descending order
+    #print(count_descending)
+    top5_count = count_descending[:5]
+    
+    for x,y in zip(top5_count['Exercise'],top5_count['count']):
+        print(x,y,",")
+    
+    return 
+
+getTop5ByRatings()
+print('---------------,')
+getTop5ByCount()
 
 
 '''
