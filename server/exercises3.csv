@@ -1,0 +1,79 @@
+Name,Target Area,Target Muscle,Exercise Category,Difficulty,Push Pull Stretch Aerobic,"Equipment Type( gym, home , specific )",Location,Url
+"Back Squat
+",Lower Body,Quadriceps,Strength ,Beginner ,Push,"bodyweight , barbell, kettlebell , dumbell",Gym,https://www.youtube.com/embed/3PRwtVpyslo
+Front Squat,Lower Body,Quadriceps,Strength ,Intermediate ,Push,"bodyweight , barbell, kettlebell , dumbell",Gym,https://www.youtube.com/embed/v-mQm_droHg
+Pause Squat,Lower Body,Quadriceps,Strength ,Intermediate,Push,"bodyweight , barbell , kettlebell ,dumbell",Gym,https://www.youtube.com/embed/HV711kwdeQw
+Zercher Squat,Lower Body,Quadriceps,Strength ,Advanced,Push,"bodyweight , barbell, kettlebell , dumbell",Gym,https://www.youtube.com/embed/eIMAXB7xy58
+Split Squats,Lower Body,Quadriceps,Strength ,Advanced,Push,"bodyweight , barbell, kettlebell , dumbell",Gym,https://www.youtube.com/embed/HBYGeyb4sSM
+Romanian Deadlift,Lower Body,Hamstrings,Strength ,Intermediate,Push,"bodyweight , barbell, kettlebell , dumbell",Gym,https://www.youtube.com/embed/_oyxCn2iSjU
+Goblet Squat,Lower Body,Glutes,Strength ,Beginner ,Push,"bodyweight , barbell, kettlebell , dumbell",Gym,https://www.youtube.com/embed/q4CSeayuKbo
+Leg Press,Lower Body,Quadriceps,Strength ,Beginner ,Push,machine,Gym,https://www.youtube.com/embed/GvRgijoJ2xY
+Deadlift,Full Body,Lower Back,Strength,Intermediate,Pull,"barbell, kettlebell, dumbell ",Gym,https://www.youtube.com/embed/VL5Ab0T07e4
+Cable Pull Through,Full Body,Lower Back,Strength,Beginner ,Pull,machine,Gym,https://www.youtube.com/embed/OkcryKUZTZs
+Sumo Deadlifts,Full Body,Lower Back,Strength,Beginner ,Pull,barbell,Gym,https://www.youtube.com/embed/XsrD5y8EIKU
+Trap Bar Deadlift,Full Body,Lower Back,Strength,Beginner ,Pull,trap bar,Gym,https://www.youtube.com/embed/WzvsIU9FW60
+Kettle Bell Swings,Full Body,Hamstrings,Strength,Intermediate,Pull,kettlebell,Gym,https://www.youtube.com/embed/Buz6gaVzVZs
+Barbell Row,Upper Body,Upper Back,Strength ,Intermediate,Pull,barbell,Gym,https://www.youtube.com/embed/kBWAon7ItDw
+Pull-ups,Full Body,Upper Back,Strength ,Intermediate,Pull,"bar, machine",Gym,https://www.youtube.com/embed/eGo4IYlbE5g
+Chin-ups,Full Body,Upper Back,Strength ,Intermediate,Pull,"bar, machine",Gym,https://www.youtube.com/embed/brhRXlOhsAM
+Face Pulls,Upper Body,Shoulders,Strength ,Beginner ,Pull,machine,Gym,https://www.youtube.com/embed/7bLivsAhDFY
+T-bar Rows ,Upper Body,Upper Back,Strength ,Intermediate,Pull,barbell,Gym,https://www.youtube.com/embed/5foJiIVhs8Q
+Lat Pulldown,Upper Body,Upper Back,Strength ,Intermediate,Pull,machine,Gym,https://www.youtube.com/embed/CAwf7n6Luuc
+Bent Over Row,Upper Body,Upper Back,Strength ,Beginner ,Pull,"barbell, kettlebell , dumbell",Gym,https://www.youtube.com/embed/QFq5jdwWwX4
+Bench Press ,Upper Body,Chest,Strength ,Beginner ,Push,"barbell , dumbell",Gym,https://www.youtube.com/embed/vcBig73ojpE
+Incline Bench Press,Upper Body,Chest,Strength ,Beginner ,Push,"barbell , dumbell",Gym,https://www.youtube.com/embed/SrqOu55lrYU
+Overhead Press,Upper Body,Shoulder,Strength ,Beginner ,Push,"barbell , dumbell, kettlebell",Gym,https://www.youtube.com/embed/_RlRDWO2jfg
+Push-ups,Upper Body,Chest,Strength ,Beginner ,Push,bodyweight,Both,https://www.youtube.com/embed/IODxDxX7oi4
+Dips,Core,Chest,Strength ,Beginner ,Push,"bodweight, machine, dumbell",Both,https://www.youtube.com/embed/2z8JmcrW-As
+Ab Wheel Rollouts,Core,Abdominals ,Strength ,Beginner ,Push,ab-wheel,Special,https://www.youtube.com/embed/rqiTPdK1c_I
+Leg Raises,Core,Abdominals ,Strength ,Beginner ,Pull,bodweight,Both,https://www.youtube.com/embed/l4kQd9eWclE
+Bicep Curl,Upper Body,Bicep,Strength ,Beginner ,Pull,"barbell, kettlebell , dumbell",Gym,https://www.youtube.com/embed/ykJmrZ5v0Oo
+Walking,Full Body,Lungs,Aerobic,Beginner ,Aerobic,"machine, none",Both,https://www.youtube.com/embed/-fD2TSL2s7I
+Jogging,Full Body,Lungs,Aerobic,Beginner ,Aerobic,"machine, none",Both,https://www.youtube.com/embed/wpwl-Ga-2g4
+Running,Full Body,Lungs,Aerobic,Beginner ,Aerobic,"machine, none",Both,https://www.youtube.com/embed/_kGESn8ArrU
+Sprinting ,Full Body,Lungs,Aerobic,Beginner ,Aerobic,"machine, none",Both,https://www.youtube.com/embed/-Ot-dP1xST4
+Swimming,Full Body,Lungs,Aerobic,Beginner ,Aerobic,pool,Both,https://www.youtube.com/embed/7SQkRWm6jW8
+Biking,Full Body,Lungs,Aerobic,Beginner ,Aerobic,bike,Special,https://www.youtube.com/embed/S0nRkf5wU5U
+Stairmaster,Full Body,Lungs,Aerobic,Beginner ,Aerobic,machine,Gym,https://www.youtube.com/embed/xSB39wbMz4w
+Jump Rope,Full Body,Lungs,Aerobic,Beginner ,Aerobic,jump rope,Both,https://www.youtube.com/embed/u3zgHI8QnqE
+Rowing,Full Body,Lungs,Aerobic,Beginner ,Pull,machine,Gym,https://www.youtube.com/embed/ZN0J6qKCIrI
+Knees to Chest,Lower Body,Hamstrings,Flexibility ,Beginner,Stretch,bodyweight,Both,https://www.youtube.com/embed/8kzfXDNq_P8
+Standing Quad Stretch,Lower Body,Quadriceps,Flexibility ,Beginner,Stretch,bodyweight,Both,https://www.youtube.com/embed/JwaniMkYBCc
+Forward Lunge,Lower Body,Quadriceps,Flexibility ,Beginner,Stretch,bodyweight,Both,https://www.youtube.com/embed/mUf28ZDa5tg
+"Side Lunge
+",Lower Body,Hamstrings,Flexibility ,Beginner,Stretch,bodyweight,Both,https://www.youtube.com/embed/liFeq7swKfc
+Cross-Over,Lower Body,Hamstrings,Flexibility ,Beginner,Stretch,bodyweight,Both,https://www.youtube.com/embed/nqdJnBuYMP0
+Seat Straddle Lotus,Lower Body,Hamstrings,Flexibility ,Beginner,Stretch,bodyweight,Both,https://www.youtube.com/embed/IswHRo0mrpI
+Piriformis Stretch,Lower Body,Glutes,Flexibility ,Beginner,Stretch,bodyweight,Both,https://www.youtube.com/embed/4UoITjubrgE
+Figure Four Stretch,Lower Body,Glutes,Flexibility ,Beginner,Stretch,bodyweight,Both,https://www.youtube.com/embed/E6sqUHFt6Ng
+Tricep Stretch,Upper Body,Tricep,Flexibility ,Beginner,Stretch,bodyweight,Both,https://www.youtube.com/embed/SaZK9vlSmHI
+Frog Stretch,Lower Body,Hamstrings,Flexibility ,Beginner,Stretch,bodyweight,Both,https://www.youtube.com/embed/dUuZLrUOmhU
+Butterfly Stretch,Lower Body,Hamstrings,Flexibility ,Beginner,Stretch,bodyweight,Both,https://www.youtube.com/embed/MdE_Cj6ChLo
+Side Bend Stretch,Lower Body,Abdominals ,Flexibility ,Beginner,Stretch,bodyweight,Both,https://www.youtube.com/embed/Pt53akW3zSg
+Pectoral Stretch,Upper Body,Chest,Flexibility ,Beginner,Stretch,bodyweight,Both,https://www.youtube.com/embed/SR5JeNEYneY
+Lying Quad Stretch,Lower Body,Quadriceps,Flexibility ,Beginner,Stretch,bodyweight,Both,https://www.youtube.com/embed/98I9C78aBZg
+Pigeon Pose ,Lower Body,Glutes,Flexibility ,Beginner,Stretch,bodyweight,Both,https://www.youtube.com/embed/M1gEGLtF1p0
+Pretzel Stretch,Lower Body,Glutes,Flexibility ,Beginner,Stretch,bodyweight,Both,https://www.youtube.com/embed/oO5l4D1kg8E
+Downward Dog,Full Body,Lower Back,Flexibility ,Beginner,Stretch,bodyweight,Both,https://www.youtube.com/embed/YqOqM79McYY
+Cat Cow,Full Body,Lower Back,Flexibility ,Beginner,Stretch,bodyweight,Both,https://www.youtube.com/embed/kqnua4rHVVA
+Plank,Full Body,Abdominals ,Strength ,Beginner,Stretch,bodyweight,Both,https://www.youtube.com/embed/F-nQ_KJgfCY
+Side Plank,Full Body,Abdominals ,Strength ,Intermediate,Stretch,bodyweight,Both,https://www.youtube.com/embed/XeN4pEZZJNI
+Elephant Walk,Lower Body,Quadriceps,Flexibility ,Beginner ,Stretch,bodyweight,Both,https://www.youtube.com/embed/MsUTFi24Iq4
+Bird Dog,Upper Body,Upper Back,Flexibility ,Intermediate,Stretch,bodyweight,Both,https://www.youtube.com/embed/wiFNA3sqjCA
+Chest Fly,Upper Body,Chest,Strength,Advanced,Pull,,Both,https://www.youtube.com/embed/QENKPHhQVi4
+Suitcase Carry,Upper Body,Bicep,Strength,Advanced,Push,,Both,https://www.youtube.com/embed/byBxlMhgggc
+Shrugs,Upper Body,Upper Back,Strength,Advanced,Pull,,Gym,https://www.youtube.com/embed/C6sYjDFuq9I
+Waiter Carry,Upper Body,Shoulders,Strength,Advanced,Push,,Both,https://www.youtube.com/embed/wrxIk5pscUs
+Bottom Ups,Upper Body,Shoulders,Strength,Advanced,Push,,Both,https://www.youtube.com/embed/UpBzi0HIdAI
+Bulgarian Split Squat,Lower Body,Quadriceps,Strength,Advanced,Pull,,Both,https://www.youtube.com/embed/HBYGeyb4sSM
+Clean and Press,Upper Body,Shoulders,Strength,Advanced,Push,,Gym,https://www.youtube.com/embed/KCe8l86-alA
+Turkish Getup,Full Body,Shoulders,Strength,Advanced,Push,,Gym,https://www.youtube.com/embed/jgKFttG0Z7I
+Wood-Chop,Upper Body,Shoulders,Strength,Advanced,Pull,,Gym,https://www.youtube.com/embed/b65s5BtdOEc
+Power Clean,Upper Body,Upper Back,Strength,Advanced,Pull,,Gym,https://www.youtube.com/embed/5vVSGITznQk
+Push-Press,Upper Body,Upper Back,Strength,Advanced,Push,,Gym,https://www.youtube.com/embed/i_1Sl4yHj44
+Overhead Squat,Full Body,Quadriceps,Strength,Advanced,Push,,Gym,https://www.youtube.com/embed/TUtBNkk_lio
+Snatch,Full Body,Bicep,Strength,Advanced,Push,,Gym,https://www.youtube.com/embed/VMaBfcRprAU
+Farmers Carry,Full Body,Bicep,Strength,Advanced,Push,,Gym,https://www.youtube.com/embed/rt17lmnaLSM
+Jefferson Curl,Full Body,Upper Back,Strength,Advanced,Pull,,Gym,https://www.youtube.com/embed/y_APeWo643w
+Sled Push,Full Body,Quadriceps,Strength,Advanced,Push,,Gym,https://www.youtube.com/embed/9XRRXaUpnLk
+Sled Pull,Full Body,Quadriceps,Strength,Advanced,Pull,,Gym,https://www.youtube.com/embed/gO1Mx0KtHRc
