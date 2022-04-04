@@ -228,9 +228,10 @@ def getTop5ByCount():
         print(x,y,",")
     
     return 
-
+print('These are the top 5 exercises by average user ratings,')
 getTop5ByRatings()
 print('---------------,')
+print('These are the top 5 exercises by popularity,')
 getTop5ByCount()
 
 
