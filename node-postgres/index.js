@@ -4,6 +4,7 @@ const port = 3001
 
 const exercises_model = require('./exercises_model')
 const user_model = require('./user_model')
+const exercise_list_model = require('./exercises_list_model.js')
 
 app.use(express.json())
 app.use(function (req, res, next) {
@@ -37,9 +38,9 @@ app.post('/exercises', (req, res) => {
     })
   })
 
-  app.get('/users', (req, res) => {
+  app.get('/users_specific/:id', (req, res) => {
     //res.status(200).send('Hello World!');
-    user_model.getUser(req.body)
+    user_model.getUser(req.params.id)
     .then(response => {
       res.status(200).send(response);
     })
@@ -69,7 +70,17 @@ app.post('/exercises', (req, res) => {
     })
   })
 
-  
+  app.get('/exercises_list', (req, res) => {
+    //res.status(200).send('Hello World!');
+    
+    exercise_list_model.getExerciseNames()
+    .then(response => {
+      res.status(200).send(response);
+    })
+    .catch(error => {
+      res.status(500).send(error);
+    })
+  })
 
   
 app.listen(port, () => {
