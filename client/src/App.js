@@ -104,7 +104,7 @@ function App() {
         console.log(num6);
       }
     }
-    else if(val === 'Push Pull Stretch Aerobic' )
+    else if(val === 'Movement' )
     {
       if( (num7 === '') )
       {
@@ -334,7 +334,7 @@ function App() {
           <label>Exercise Category</label><input type="checkbox" value="Exercise Category" onChange={e => handleCheckOne(e.target.value)}/>
           <label style={{ paddingLeft: '15px' }} > Weight:</label><input type="number" min = '0'  max = '100' step = '1' onChange={e => setNum12(e.target.value)} /><br />
 
-          <label>Push,Pull,Strech, or Aerobic  </label> <input type="checkbox" value="Push Pull Stretch Aerobic" onChange={e => handleCheckOne(e.target.value)}/>
+          <label>Movement: Push,Pull,Strech, or Aerobic  </label> <input type="checkbox" value="Movement" onChange={e => handleCheckOne(e.target.value)}/>
           <label style={{ paddingLeft: '15px' }} > Weight:</label><input type="number" min = '0'  max = '100' step = '1' onChange={e => setNum13(e.target.value)}/><br />
 
           <label>Difficulty</label><input type="checkbox" value="Difficulty" onChange={e => handleCheckOne(e.target.value)}/>
