@@ -6,10 +6,15 @@ from sklearn.metrics.pairwise import linear_kernel
 import numpy as np
 import pandas as pd
 import sys
+import psycopg2 as pg
+
 print('test')
 
 tf = TfidfVectorizer(analyzer='word',ngram_range=(1, 2),min_df=0, stop_words='english') #transforms text to feature vectors that can be used as input to estimator.
-exercises = pd.read_csv('exercises3.csv')
+#exercises = pd.read_csv('exercises3.csv')
+engine = pg.connect("dbname='exercise_db' user='christopherwu' host='localhost' port='5432' password=''")
+exercises = pd.read_sql('select * from "Excercises"', con=engine)
+exercises = exercises.replace('\n','', regex=True)
 exercises = exercises.applymap(lambda x: x.rstrip() if isinstance(x, str) else x)#strips trailing whitespace if it exists
 
 '''
@@ -147,9 +152,16 @@ def give_set_recommendations(title,sim,num,arr, df = exercises):
         
     return arr2[:num]+ arr
 
+'''
 list_of_excercises = pd.read_csv('listExercises.csv')#read exercise list
 list_of_excercises = list_of_excercises.applymap(lambda x: x.rstrip() if isinstance(x, str) else x)#get rid of trailing spaces
+'''
 #print(list_of_excercises)
+
+engine = pg.connect("dbname='exercise_db' user='christopherwu' host='localhost' port='5432' password=''")
+list_of_excercises = pd.read_sql('select * from "User"', con=engine)
+list_of_excercises = list_of_excercises.replace('\n','', regex=True)
+list_of_excercises = list_of_excercises.applymap(lambda x: x.rstrip() if isinstance(x, str) else x)#strips trailing whitespace if it exists
 
 #gets top 5 exercise by average user ratings
 def getTop5ByRatings():
@@ -261,10 +273,10 @@ def convert_location(aList):
     return return_list
 
 
-
+'''
 exercises = pd.read_csv('exercises3.csv')
 exercises = exercises.applymap(lambda x: x.rstrip() if isinstance(x, str) else x)
-
+'''
 '''
 Give recommendations based of set templates from the database
 
@@ -283,14 +295,14 @@ def template_recommendations(exercise_arr,user_arr):
     df = exercises
     for x in exercise_arr:
         #print(x)
-        df2 = {'Name': 'Dummy','Target Area' : '', 'Target Muscle': x[0], 'Exercise Category':  user_arr[0], 'Difficulty' : '','Push Pull Stretch Aerobic': x[1],  'Equipment Type( gym, home , specific )' : '', 'Location': user_arr[2] , 'Url' :''}
+        df2 = {'Name': 'Dummy','Target Area' : '', 'Target Muscle': x[0], 'Exercise Category':  user_arr[0], 'Difficulty' : '','Movement': x[1],  'Equipment' : '', 'Location': user_arr[2] , 'Url' :''}
         #print(df2)
         df = df.append(df2, ignore_index = True)
         #have to send df to function
         #print(df.iloc[[0, -1]])
         #print(len(df.index))
         print(x[0],':',x[1],',')
-        recommendations = target_recommendations('Dummy',create_cosine_similarities(['Target Muscle','Exercise Category','Push Pull Stretch Aerobic','Location'],None,df ),df )
+        recommendations = target_recommendations('Dummy',create_cosine_similarities(['Target Muscle','Exercise Category','Movement','Location'],None,df ),df )
         #print(target_recommendations('Dummy',create_cosine_similarities(['Target Muscle','Exercise Category','Push Pull Stretch Aerobic','Location'],None,df ),df ))
         #print(recommendations)
         for y in recommendations:
@@ -321,10 +333,10 @@ exer = exer[:-2] + ')'
     
 print('Hello  ',sys.argv[1],'. These are the exercises similar to ', exercise_name, 'using',exer,"as the similarity:,") 
 
-
+'''
 exercises = pd.read_csv('exercises3.csv')
 exercises = exercises.applymap(lambda x: x.rstrip() if isinstance(x, str) else x)
-
+'''
 target_arr = []
 weight_arr = []
 if sys.argv[16] == 'Yes':
