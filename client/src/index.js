@@ -3,7 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Add_Exercises from './Add_Exercises';
+import Recommendations from './Recommendations';
+
+import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
+
 /*
 ReactDOM.render(
   <React.StrictMode>
@@ -15,7 +19,9 @@ ReactDOM.render(
 
 ReactDOM.render(
   <React.StrictMode>
-    <Add_Exercises />
+   <BrowserRouter>
+    <App />
+   </BrowserRouter> 
   </React.StrictMode>,
   document.getElementById('root')
 );
