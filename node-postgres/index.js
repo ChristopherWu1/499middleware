@@ -38,11 +38,24 @@ app.post('/exercises', (req, res) => {
     })
   })
 
-  app.get('/users_specific/:id', (req, res) => {
-    //res.status(200).send('Hello World!');
-    user_model.getUser(req.params.id)
+  app.put('/exercises',(req, res) => {
+    exercises_model.getUserExercisesFromID(req.body)
     .then(response => {
       res.status(200).send(response);
+      console.log(req.body);
+    })
+    .catch(error => {
+      res.status(500).send(error);
+    })
+  })
+
+  app.get('/users_specific/:id', (req, res) => {
+    //res.status(200).send('Hello World!');
+    //res.status(200).send();
+    let id  = req.params.id;
+    user_model.getUser1(id)
+    .then(response => {
+      res.status(200).json(response);
     })
     .catch(error => {
       res.status(500).send(error);
@@ -59,8 +72,18 @@ app.post('/exercises', (req, res) => {
       res.status(500).send(error);
     })
   })
+  app.put('/users', (req, res) => {
+    user_model.loginUser(req.body)
+    .then(response => {
+      res.status(200).send(response);
+    })
+    .catch(error => {
+      console.log('test3');
+      res.status(500).send(error);
+    })
+  })
 
-  app.delete('/users/:id', (req, res) => {
+  app.delete('/users', (req, res) => {
     user_model.deleteUser(req.body)
     .then(response => {
       res.status(200).send(response);

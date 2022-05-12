@@ -18,6 +18,18 @@ const getUserExercises= () => {
       })
     }) 
   }
+  const getUserExercisesFromID = (body) => {
+    return new Promise(function(resolve, reject) {
+      let User_Id1 = body.id;
+      
+      pool.query('SELECT * FROM "User" where "User_Id" = ($1)', [User_Id1],(error, results) => {
+        if (error) {
+          reject(error)
+        }
+        resolve(results.rows);
+      })
+    }) 
+  }
   
 
   
@@ -53,5 +65,6 @@ Date: text
   module.exports = {
     getUserExercises,
     createUserExercise,
+    getUserExercisesFromID
   }
   

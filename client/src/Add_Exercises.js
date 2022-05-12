@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect,Compnent} from 'react';
 import Autosuggest from 'react-autosuggest';
+import { Link } from "react-router-dom";
 
-
-function Add_Exercises() {
+function Add_Exercises(props) {
     const [exercises, setExercises] = useState(false);
   useEffect(() => {
-    getExercises();
+    getExercises1();
   }, []);
   const [user_id, set_user_id] = useState('');
   const [exercise, set_exerise] = useState('');
@@ -13,23 +13,105 @@ function Add_Exercises() {
   const [sets, set_sets] = useState('');
   const [reps, set_reps] = useState('');
   const [date, set_date] = useState('');
+  console.log(props.id);
+
 
   const [user, setUser] = useState(false);
-  const [user_id_2, set_user_id_2] = useState(19);
+  useEffect(() => {
+    getUser();
+  }, []);
+  const [user_id_2, set_user_id_2] = useState('');
+  
+
+
+
 
   const [exercise_names, set_exercise_names] = useState(false);
   useEffect(() => {
     getExerciseNames();
   }, []);
-  
-  
-  
 
+  const [ex_names, set_ex_names] = useState([]);
 
+  const [value, set_values] = useState('');
+  const [suggestions, set_suggestions] = useState('');
+
+  function onSuggestionsFetchRequested  (value )  {
+      set_suggestions( getSuggestions(value));
+  };
+
+  function onSuggestionsClearRequested()
+  {
+    set_suggestions( []);
+  }
+  
+  
+  // Teach Autosuggest how to calculate suggestions for any given input value.
+const getSuggestions = value => {
+  const inputValue = value.trim().toLowerCase();
+  const inputLength = inputValue.length;
+
+  return inputLength === 0 ? [] : ex_names.filter(ex =>
+    ex.theName.toLowerCase().slice(0, inputLength) === inputValue
+  );
+};
+// When suggestion is clicked, Autosuggest needs to populate the input
+// based on the clicked suggestion. Teach Autosuggest how to calculate the
+// input value for every given suggestion.
+const getSuggestionValue = suggestion => suggestion.theName;
+
+// Use your imagination to render suggestions.
+const renderSuggestion = suggestion => (
+  <div>
+    {suggestion.name}
+  </div>
+);
+
+function getUserId() {
+  let username = prompt('enter username');
+  let password = prompt('enter password');
+  fetch('http://localhost:3001/users',{method: 'PUT',
+  headers: {
+    'Content-Type': 'application/json',
+},
+    body: JSON.stringify({username,password}),
+}
+  )
+    .then(response => {
+      return response.text();
+    })
+    .then(data => {
+      console.log(data);
+      var numberPattern = /\d+/g;
+      let num = data.match( numberPattern ).join('');
+      
+      set_user_id_2(num);
+      
+
+    });
+}
 
 
     function getExercises() {
         fetch('http://localhost:3001/exercises',{method: 'GET'}
+        )
+          .then(response => {
+            return response.text();
+          })
+          .then(data => {
+            setExercises(data);
+            
+
+          });
+      }
+      function getExercises1() {
+        let id = props.id;
+        fetch('http://localhost:3001/exercises',{method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+      },
+          body: JSON.stringify({id}),
+    }
         )
           .then(response => {
             return response.text();
@@ -76,15 +158,17 @@ function createExercise() {
       
       function getUser() {
         
-        let id = prompt('Enter  user_id');
+        //let id = prompt('Enter  user_id');
+        let id = props.id;
        console.log(id);
         fetch(`http://localhost:3001/users_specific/${id}`, {
-             method: 'GET'}
+             method: 'GET',}
              )
               .then(response => {
                 return response.text();
             })
             .then(data => {
+              console.log(data);
               setUser(data);
             });
           }
@@ -97,6 +181,7 @@ function createExercise() {
               .then(data => {
                 let arr = data.split(",");
                 let arr2 = [];
+                let arr4 = [];
                 for (let i = 0; i < arr.length; i++) { 
                   //console.log(arr[i]);
                   let arr3 = arr[i].split(":");
@@ -119,25 +204,110 @@ function createExercise() {
 
                     }
                   aName = aName.trim();
-                  
-                  arr2.push(aName);
+                
+                arr2.push(aName);
+                var obj = {"theName": aName};
+                console.log(obj);
+                arr4.push({"theName": aName});
 
                 }
               
               
 
-                console.log(arr2);
+                console.log(arr2,":::::",arr4);
+                for(let x = 0; x < arr4.length; x++)
+                {
+                  console.log(arr4[x].theName);
+                }
+                set_ex_names(arr4);
                 set_exercise_names(arr2);
                 //console.log(data,data.length,data[0],typeof data,arr,arr.length);
               });
-          }
+          };
+        
+          function getUser() {
+        
+            //let id = prompt('Enter  user_id');
+            let id = props.id;
+           console.log(id);
+            fetch(`http://localhost:3001/users_specific/${id}`, {
+                 method: 'GET',}
+                 )
+                  .then(response => {
+                    return response.text();
+                })
+                .then(data => {
+                  console.log(data);
+                  setUser(data);
+                });
+              }
+              function getExerciseNames() {
+                fetch('http://localhost:3001/exercises_list',{method: 'GET'}
+                )
+                  .then(response => {
+                    return response.text();
+                  })
+                  .then(data => {
+                    let arr = data.split(",");
+                    let arr2 = [];
+                    let arr4 = [];
+                    for (let i = 0; i < arr.length; i++) { 
+                      //console.log(arr[i]);
+                      let arr3 = arr[i].split(":");
+                      let aName = arr3[1];
+                      //console.log(aName);
+                      if(i === (arr.length -1 ))
+                      {
+                        aName = aName.substring(1,aName.length -3);
+                        
+                      }
+                      else
+                      {
+                        aName = aName.substring(1,aName.length -2);
+                        
+                      }
+                      if(aName.substring(aName.length -2) === '\n')
+                        {
+                          //console.log('yeš');
+                          aName = aName.substring(0,aName.length -2);
+    
+                        }
+                      aName = aName.trim();
+                    
+                    arr2.push(aName);
+                    var obj = {"theName": aName};
+                    console.log(obj);
+                    arr4.push({"theName": aName});
+    
+                    }
+                  
+                  
+    
+                    console.log(arr2,":::::",arr4);
+                    for(let x = 0; x < arr4.length; x++)
+                    {
+                      console.log(arr4[x].theName);
+                    }
+                    set_ex_names(arr4);
+                    set_exercise_names(arr2);
+                    //console.log(data,data.length,data[0],typeof data,arr,arr.length);
+                  });
+              };
+    
+
+      
+        
         
           
 
-
+        
 
       return (
         <div>
+          <Link to={`/`}>
+          <h1> Home</h1>
+          </Link>
+
           {exercises ? exercises : 'You have done no exercises'}
           <br />
           <label>
@@ -168,23 +338,27 @@ function createExercise() {
           <label>
           Enter date the exercise was done: <input type="date" onChange={e => set_date(e.target.value)} />
           </label>
+
           <br />
 
 
-      <button onClick={createExercise}>Add merchant</button>
+      <button onClick={createExercise}>Add Exercise</button>
       <p>----------------------------------------------</p>
-      <button onClick={getUser}>Add merchant</button>
+      <button onClick={getUser}>Get User</button>
       <br />
       {user ? user : 'There is no user'}
           <br />
-          {exercise_names ? exercise_names : 'There is no exerciseses'}
+          {exercise_names ? exercise_names : 'There are no exerciseses'}
+      <br />
+      <button onClick={getUserId}>Add Exercise</button>
+      {user_id_2 ? user_id_2 : 'There is no user_id from login'}
+      
 
          
         </div>
         
       );
-      
-    
-}
+         
+      }
 
 export default Add_Exercises;

@@ -281,7 +281,7 @@ exercises = exercises.applymap(lambda x: x.rstrip() if isinstance(x, str) else x
 Give recommendations based of set templates from the database
 
 exercise_arr will give preset exercise categories 
-Ex. day1_arr= [['Quadriceps','Press'],['Chest','Press'],['Shoulder','Press']]
+Ex. day1_arr= [['Quadriceps','Press',"sets","reps"],['Chest','Press'],['Shoulder','Press']]
 
 user_arr will give other preset data from the user profile or inputted information 
 Ex. user1 = ['Strength','Beginner','Gym']
