@@ -1,7 +1,6 @@
 # myproject
 
 app.js is from the client(REACT)
-
 server.js is from the server(EXPRESS)
 have to install node.js and express.js
 
@@ -16,4 +15,5 @@ have to install node.js and express.js
 
 
 have to download postgres and create a database called exercise_db
+installing pgadmin4 makes it easier to setup database
 psql server runs port 5432
