@@ -10,4 +10,6 @@ server.js is from the server(EXPRESS)
 2.Middleware, python fies "node server.js" port 5000
 3.Front end "npm start" port 3000
 
-psql server port 5432
+
+have to download postgres and create a database called exercise_db
+psql server runs port 5432
