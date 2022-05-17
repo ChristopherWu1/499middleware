@@ -39,7 +39,7 @@ const deleteUser = (aId) => {
       //const { User_Id,Exercise,Rating,Set,Reps,Date } = body
       let Username1 = body.username;
       let Password1= body.password;
-      console.log(Username1,'ahahahaahah');
+      console.log(Username1);
       console.log(Password1);
 
       pool.query('select user_id from "user_list" where "username" = ($1) and "password" = ($2)', [Username1,Password1], (error, results) => {
@@ -57,20 +57,23 @@ const deleteUser = (aId) => {
   const createUser = (body) => {
     return new Promise(function(resolve, reject) {
       //const { User_Id,Exercise,Rating,Set,Reps,Date } = body
-      let User_Id1 = body.user_id;
+      //let User_Id1 = body.user_id;
       let Username1 = body.username;
       let Password1= body.password;
+      let Name1 = body.name;
+      /*
       let Exercise_category1 = body.exercise_category;
       let Difficulty1 = body.difficulty;
       let Location1= body.location;
-      let Name1 = body.Name;
-      console.log(body,User_Id1, Username1,Password1,Exercise_category1,Difficulty1,Location1);
+      let Name1 = body.Name;*/
+      console.log(body,Username1,Password1,Name1);
 
-      pool.query('INSERT INTO "user_list" ("user_id","username","password","exercise_category","difficulty","location","Name) VALUES ($1,$2,$3,$4,$5,$6) RETURNING *', [User_Id1, Username1,Password1,Exercise_category1,Difficulty1,Location1,Name1], (error, results) => {
+      pool.query('INSERT INTO "user_list" ("user_id","username","password","Name") VALUES ((select max("user_id") from "user_list") + 1,$1,$2,$3) RETURNING "user_id"', [ Username1,Password1,Name1], (error, results) => {
         if (error) {
           reject(error)
         }
-        resolve(`A new merchant has been added added: ${results.rows[0]}`)
+        console.log(results.rows);
+        resolve(results.rows);
       })
       pool.end
     })
