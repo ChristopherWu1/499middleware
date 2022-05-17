@@ -310,7 +310,26 @@ def template_recommendations(exercise_arr,user_arr):
         print('-------------,')
         df = df[:-1]
         #print(df)
-    
+
+def template_recommendations1(exercise_arr,user_arr):
+    df = exercises
+    for x in exercise_arr:
+        #print(x)
+        df2 = {'Name': 'Dummy','Target Area' : '', 'Target Muscle': x[0], 'Exercise Category':  user_arr[0], 'Difficulty' : '','Movement': x[1],  'Equipment' : '', 'Location': user_arr[2] , 'Url' :''}
+        #print(df2)
+        df = df.append(df2, ignore_index = True)
+        #have to send df to function
+        #print(df.iloc[[0, -1]])
+        #print(len(df.index))
+        print(x[0],':',x[1],',')
+        recommendations = target_recommendations('Dummy',create_cosine_similarities(['Target Muscle','Exercise Category','Movement','Location'],None,df ),df )
+        #print(target_recommendations('Dummy',create_cosine_similarities(['Target Muscle','Exercise Category','Push Pull Stretch Aerobic','Location'],None,df ),df ))
+        #print(recommendations)
+        for y in recommendations:
+            print(y,",")
+        print('-------------,')
+        df = df[:-1]
+        #print(df)
 
 user_list = ['Gym','Home','Both','Special']
 muscle_list = ['Quadriceps' ,'Hamstrings' ,'Glutes' ,'Lower Back' ,'Upper Back' ,'Shoulders','Chest' ,'Shoulder' ,'Abdominals', 'Bicep' ',Lungs' ,'Tricep']
@@ -384,7 +403,41 @@ getTop5ByCount()
 user1 = ['Strength','Beginner','Gym']
 print('---------------,')
 print('these are the template recommendations')
-template_recommendations(day1_arr,user1)
+
+exercise_template = pd.read_sql('select * from "Four_Day_Template"', con=engine)
+exercise_template = exercise_template.replace('\n','', regex=True)
+exercise_template = exercise_template.applymap(lambda x: x.rstrip() if isinstance(x, str) else x)#strips trailing whitespace if it exists
+print(exercise_template)
+#[Day, Target Muscle, Movement, Sets, Reps]
+def template_recommendations1(exercise_arr,user_arr,day):
+    df = exercises
+    #df1 = exercise_arr[exercise_arr['Day']  day]
+    df1= exercise_arr.loc[exercise_arr['Day'] == day]
+    print(df1)
+    
+    for index, row in df1.iterrows():
+        #print(x)
+        print(row['Target Muscle'],row['Movement'],",")
+        
+        df2 = {'Name': 'Dummy','Target Area' : '', 'Target Muscle': row['Target Muscle'], 'Exercise Category':  user_arr[0], 'Difficulty' : '','Movement': row['Movement'],  'Equipment' : '', 'Location': user_arr[2] , 'URL' :''}
+        #print(df2)
+        df = df.append(df2, ignore_index = True)
+        #have to send df to function
+        #print(df.iloc[[0, -1]])
+        #print(len(df.index))
+        #print(x[0],',',x[1])
+        recommendations = target_recommendations('Dummy',create_cosine_similarities(['Target Muscle','Exercise Category','Movement','Location'],None,df ),df )
+        #print(target_recommendations('Dummy',create_cosine_similarities(['Target Muscle','Exercise Category','Push Pull Stretch Aerobic','Location'],None,df ),df ))
+        for y in recommendations:
+            print(y,",")
+        print('-------------,')
+        df = df[:-1]
+        #print(df)
+print('aojdpohvpfohfpbohbpoh,')
+template_recommendations1(exercise_template,user1,4)
+
+
+
 
 
 '''

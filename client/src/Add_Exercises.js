@@ -13,10 +13,10 @@ function Add_Exercises(props) {
   const [sets, set_sets] = useState('');
   const [reps, set_reps] = useState('');
   const [date, set_date] = useState('');
-  console.log(props.id);
+  console.log('props id',props.id,typeof props.id);
 
 
-  const [user, setUser] = useState(false);
+  const [user, setUser] = useState('');
   useEffect(() => {
     getUser();
   }, []);
@@ -66,7 +66,7 @@ const renderSuggestion = suggestion => (
     {suggestion.name}
   </div>
 );
-
+/*
 function getUserId() {
   let username = prompt('enter username');
   let password = prompt('enter password');
@@ -90,7 +90,7 @@ function getUserId() {
 
     });
 }
-
+*/
 
     function getExercises() {
         fetch('http://localhost:3001/exercises',{method: 'GET'}
@@ -106,6 +106,7 @@ function getUserId() {
       }
       function getExercises1() {
         let id = props.id;
+        
         fetch('http://localhost:3001/exercises',{method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -152,7 +153,7 @@ function createExercise() {
         })
           .then(data => {
             alert(data);
-            getExercises();
+            getExercises1();
           });
       }
       
@@ -169,78 +170,12 @@ function createExercise() {
             })
             .then(data => {
               console.log(data);
+              //return(data);
               setUser(data);
             });
           }
-          function getExerciseNames() {
-            fetch('http://localhost:3001/exercises_list',{method: 'GET'}
-            )
-              .then(response => {
-                return response.text();
-              })
-              .then(data => {
-                let arr = data.split(",");
-                let arr2 = [];
-                let arr4 = [];
-                for (let i = 0; i < arr.length; i++) { 
-                  //console.log(arr[i]);
-                  let arr3 = arr[i].split(":");
-                  let aName = arr3[1];
-                  //console.log(aName);
-                  if(i === (arr.length -1 ))
-                  {
-                    aName = aName.substring(1,aName.length -3);
-                    
-                  }
-                  else
-                  {
-                    aName = aName.substring(1,aName.length -2);
-                    
-                  }
-                  if(aName.substring(aName.length -2) === '\n')
-                    {
-                      //console.log('yeš');
-                      aName = aName.substring(0,aName.length -2);
-
-                    }
-                  aName = aName.trim();
-                
-                arr2.push(aName);
-                var obj = {"theName": aName};
-                console.log(obj);
-                arr4.push({"theName": aName});
-
-                }
-              
-              
-
-                console.log(arr2,":::::",arr4);
-                for(let x = 0; x < arr4.length; x++)
-                {
-                  console.log(arr4[x].theName);
-                }
-                set_ex_names(arr4);
-                set_exercise_names(arr2);
-                //console.log(data,data.length,data[0],typeof data,arr,arr.length);
-              });
-          };
-        
-          function getUser() {
-        
-            //let id = prompt('Enter  user_id');
-            let id = props.id;
-           console.log(id);
-            fetch(`http://localhost:3001/users_specific/${id}`, {
-                 method: 'GET',}
-                 )
-                  .then(response => {
-                    return response.text();
-                })
-                .then(data => {
-                  console.log(data);
-                  setUser(data);
-                });
-              }
+          
+         
               function getExerciseNames() {
                 fetch('http://localhost:3001/exercises_list',{method: 'GET'}
                 )
@@ -276,14 +211,14 @@ function createExercise() {
                     
                     arr2.push(aName);
                     var obj = {"theName": aName};
-                    console.log(obj);
+                    //console.log(obj);
                     arr4.push({"theName": aName});
     
                     }
                   
                   
     
-                    console.log(arr2,":::::",arr4);
+                    //console.log(arr2,":::::",arr4);
                     for(let x = 0; x < arr4.length; x++)
                     {
                       console.log(arr4[x].theName);
@@ -350,7 +285,7 @@ function createExercise() {
           <br />
           {exercise_names ? exercise_names : 'There are no exerciseses'}
       <br />
-      <button onClick={getUserId}>Add Exercise</button>
+      
       {user_id_2 ? user_id_2 : 'There is no user_id from login'}
       
 

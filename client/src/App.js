@@ -5,6 +5,8 @@ import React, {Component , useState}  from 'react';
 import { Routes, Route,BrowserRouter as Router } from "react-router-dom";
 import Recommendations from './Recommendations';
 import Add_Exercises from "./Add_Exercises";
+import Profile from "./Profile";
+import Register from "./Register";
 
 /*
 <Route exact path="/" component={Recommendations} />
@@ -16,10 +18,9 @@ class App extends Component {
  
   constructor() {
     super();
-    this.state = {id: 1};
+    this.state = {id: 0};
   }
-  /*
-   getUserId = () =>{
+  getUserId = () =>{
     let username = prompt('enter username');
     let password = prompt('enter password');
     fetch('http://localhost:3001/users',{method: 'PUT',
@@ -33,15 +34,28 @@ class App extends Component {
         return response.text();
       })
       .then(data => {
-        console.log(data);
+        console.log("intial id",data);
         var numberPattern = /\d+/g;
         let num = data.match( numberPattern ).join('');
+        num = parseInt(num);
         this.setState({id : num});
-        //set_user_id_2(num);
+        console.log(this.state.id);
         
   
       });
-  }*/
+  }
+  logout = () =>{
+    this.setState({id : 0});
+  }
+  setId = (num) =>{
+    console.log(typeof num,num);
+    this.setState({id : num});
+    console.log(this.state.id);
+  }
+  componentDidMount(){
+  
+    this.getUserId();
+  }
   render(){
 
   return (
@@ -49,7 +63,8 @@ class App extends Component {
       <Routes>
       <Route exact path="/" element={<Recommendations id = {this.state.id}/>} />
       <Route exact path="/newExercise" element={<Add_Exercises id = {this.state.id}/>} />
-         
+      <Route exact path="/profile" element={<Profile id = {this.state.id}/>} />
+      <Route exact path="/register" element={<Register id = {this.state.id} setId = {this.setId}/>} />
       </Routes>
        
     </div>

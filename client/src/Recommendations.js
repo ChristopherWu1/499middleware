@@ -287,6 +287,12 @@ function Recommendations() {
       <Link to = {'/newExercise'}>
         <h1>Add New Exercise</h1>
       </Link>
+      <Link to = {'/profile'}>
+        <h1>User Profile</h1>
+      </Link>
+      <Link to = {'/register'}>
+        <h1>User Registration</h1>
+      </Link>
       {(typeof backendData.users === 'undefined') ? (
         <p>loading...</p>
       ) : (

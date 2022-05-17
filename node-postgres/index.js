@@ -62,7 +62,7 @@ app.post('/exercises', (req, res) => {
     })
   })
 
-  app.post('/users/:id', (req, res) => {
+  app.post('/users/', (req, res) => {
     user_model.createUser(req.body)
     .then(response => {
       res.status(200).send(response);
