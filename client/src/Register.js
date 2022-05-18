@@ -5,7 +5,11 @@ function Register(props) {
   const [password, setPassword] = useState([{}]);
   const [name, setName] = useState([{}]);
   const [secondBackendData, setSecondBackendData] = useState([{}])
-
+/*
+  const [exercise_category, set] = useState([{}]);
+  const [password, setPassword] = useState([{}]);
+  const [password, setPassword] = useState([{}]);
+*/
 
   var request = { "username":username , "password": password, "name":name };
   var HandleSubmit = function (event) {

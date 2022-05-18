@@ -3,7 +3,7 @@ import './style.css'
 import { Link } from "react-router-dom";
 
 
-function Recommendations() {
+function Recommendations(props) {
   const [backendData, setBackendData] = useState([{}])
 
   useEffect(() => {
@@ -40,7 +40,7 @@ function Recommendations() {
   const [num8, setNum8] = useState('');
   const [num9, setNum9] = useState('');
 
-  //numbers
+  //numbers or weights for category
   const [num10, setNum10] = useState('');
   const [num11, setNum11] = useState('');
   const [num12, setNum12] = useState('');
@@ -50,6 +50,14 @@ function Recommendations() {
 
   //yes or no to using weights from input
   const [num16, setNum16] = useState('No');
+
+  //day for template
+  const [num17,setNum17] = useState(1);
+
+  //for user_id
+  //console.log(props.id);
+  const [num18,setNum18] = useState('');
+  //console.log(num18);
 
 
   const [sum, setSum] = useState([{}]);
@@ -162,7 +170,7 @@ function Recommendations() {
   };
 
   var nums = { "num1": num1, "num2": num2,"num3": num3 ,'num4': num4, 'num5' : num5, 'num6' : num6, 'num7' : num7, 'num8' : num8, 'num9' : num9,
-  "num10": num10, "num11": num11, "num12": num12, "num13": num13, "num14": num14, "num15": num15, "num16": num16};
+  "num10": num10, "num11": num11, "num12": num12, "num13": num13, "num14": num14, "num15": num15, "num16": num16, "num17": num17, 'num18': num18};
   //react function components must start with capitalized letters
   var HandleSubmit = function (event) {
     event.preventDefault();
@@ -170,7 +178,10 @@ function Recommendations() {
     const arrs = new Array(num10, num11, num12,num13,num14,num15);
     console.log(arrs);
     console.log(nums);
-    
+    nums['num18'] = props.id;
+    //console.log(props.id);
+    setNum18(props.id);
+    console.log("user id: ",nums['num18']);
     let theSum = 0;
     for(let x = 0 ; x < arrs.length; x++)
     {
@@ -181,7 +192,7 @@ function Recommendations() {
     }
     console.log(theSum);
     //
-    if((num2 === '') || (num1 === ''))
+    if((num2 === ''))
     {
       alert('exercise field has cannot be left blank');
       sum.sum  = undefined;
@@ -303,24 +314,10 @@ function Recommendations() {
       <p>{secondBackendData.string}</p>
       <p>{secondBackendData.number}</p>
       <form onSubmit={HandleSubmit}>
-        <label>
-          Enter name: <input type="text" onChange={e => setNum1(e.target.value)} />
-        </label>
         <br/>
         <label>
           Enter exercise: <input type="text" onChange={e => setNum2(e.target.value)} />
         </label>
-        <br/>
-        <label>
-          Pick your preference:
-          <select onChange={e => setNum3(e.target.value)}>
-            <option value="Target Area">Target Area</option>
-            <option value="Target Muscle">Target Muscle</option>
-            <option value="Exercise Category">Exercise Category</option>
-            <option value="Difficulty">Difficulty</option>
-          </select>
-        </label>
-        <br />
         <br />
         <label>
           Choose wether or not to use inputted weights:<br/>
@@ -358,7 +355,20 @@ function Recommendations() {
         </label> 
 
         <br />
+
+        <label>
+          Choose your day:
+          <select onChange={e => setNum17(e.target.value)}>
+            <option value = '1'>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </label>
+
         <input type="submit" value="Submit"></input>
+
+
       </form>
       
       {(typeof sum.sum === 'undefined') ? (

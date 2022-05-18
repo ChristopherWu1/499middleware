@@ -8,7 +8,7 @@ import pandas as pd
 import sys
 import psycopg2 as pg
 
-print('test')
+#print('test')
 
 tf = TfidfVectorizer(analyzer='word',ngram_range=(1, 2),min_df=0, stop_words='english') #transforms text to feature vectors that can be used as input to estimator.
 #exercises = pd.read_csv('exercises3.csv')
@@ -24,9 +24,11 @@ create n'th degree array(array of n arrays with n elements) of values from 1.0 t
 '''
 def create_cosine_similarities(categories,weight = None, df = exercises):
     #if no weights are submitted, then divide one by the length of catergories to weight each category equally 
+    
     if weight == None:
         weight = np.full(len(categories),np.float64(1.0/len(categories)))
     if len(categories) > 1:#if more than one category is sumbitted
+        
         sims = []
         for x in categories:
             if x == 'Difficulty':
@@ -39,19 +41,25 @@ def create_cosine_similarities(categories,weight = None, df = exercises):
                 cosine_sim = convert_location(theList)
                 sims.append(cosine_sim)
             else:
+               
                 tfidf_matrix = tf.fit_transform(df[x])
                 cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
                 sims.append(cosine_sim)
+                
             #sims.append(cosine_sim)
         weighted_sim = sims[0] * weight[0]#starts at the first category
+        
         theCount = 0
         for x,y in zip(sims,weight):#loops through the rest to weight them differently
             #print(x,y,len(x))
             #print('0---0-0-0-0-0-0-')
             if theCount > 0:
                 #print(x,y)
+                
                 weighted_sim = weighted_sim +  (x * y)#matrix multiplication then addition
+                
             theCount = theCount + 1
+        
         return weighted_sim
     #single category considered
     elif categories[0] == 'Difficulty':
@@ -121,6 +129,7 @@ def convert_difficulty(aList):
 
 #returns the list of exercises closest to the given exercise based off the cosine similarities. 
 def target_recommendations(title,sim, df = exercises):
+    
     #print(df)
     titles = df['Name']#gets column of just names
     indices = pd.Series(df.index, index = df['Name'])#turns it into a series
@@ -342,7 +351,6 @@ day1_arr= [['Quadriceps','Press'],['Chest','Press'],['Shoulder','Press']]
 exercise_name = sys.argv[2].lower().title() #standardize exercise name
 
 #exercise_name = sys.argv[2] #standardize exercise name
-col = sys.argv[3].lower()
 #print(col)
 exer = '( '
 for x in sys.argv[4:10]:
@@ -350,7 +358,7 @@ for x in sys.argv[4:10]:
         exer += x + " | "
 exer = exer[:-2] + ')'
     
-print('Hello  ',sys.argv[1],'. These are the exercises similar to ', exercise_name, 'using',exer,"as the similarity:,") 
+print('These are the exercises similar to ', exercise_name, 'using',exer,"as the similarity:,") 
 
 '''
 exercises = pd.read_csv('exercises3.csv')
@@ -359,16 +367,15 @@ exercises = exercises.applymap(lambda x: x.rstrip() if isinstance(x, str) else x
 target_arr = []
 weight_arr = []
 if sys.argv[16] == 'Yes':
-    print('yes,')
+    #print('yes,')
     for x,y in zip(sys.argv[4:10],sys.argv[10:16]):
-        #print(x,y,",")
+        print(x,y,",")
         if x != "":
             num = int(y)
             num = num/100
             target_arr.append(x)
             weight_arr.append(num)
-    #print(target_arr,weight_arr)
-    print('------------------|,')
+    print('------------------,')
     outputs = target_recommendations(exercise_name,create_cosine_similarities(target_arr,weight_arr))
     for x in outputs:
         #url = exercises.loc[exercises['Name'] == x, 'Url'].iloc[0]
@@ -376,7 +383,7 @@ if sys.argv[16] == 'Yes':
         print(x,",")
 
 else:
-    print('no,')
+    #print('no,')
     for x in sys.argv[4:10]:
         #print(x,",")
         if x != "":
@@ -402,24 +409,19 @@ getTop5ByCount()
 
 user1 = ['Strength','Beginner','Gym']
 print('---------------,')
-print('these are the template recommendations')
+print('These are the template recommendations using your preferences,')
 
-exercise_template = pd.read_sql('select * from "Four_Day_Template"', con=engine)
-exercise_template = exercise_template.replace('\n','', regex=True)
-exercise_template = exercise_template.applymap(lambda x: x.rstrip() if isinstance(x, str) else x)#strips trailing whitespace if it exists
-print(exercise_template)
-#[Day, Target Muscle, Movement, Sets, Reps]
 def template_recommendations1(exercise_arr,user_arr,day):
     df = exercises
     #df1 = exercise_arr[exercise_arr['Day']  day]
     df1= exercise_arr.loc[exercise_arr['Day'] == day]
-    print(df1)
+    #print(df1)
     
     for index, row in df1.iterrows():
         #print(x)
-        print(row['Target Muscle'],row['Movement'],",")
+        print(row['Target Muscle'], "exercise with a ",row['Movement']," motion,")
         
-        df2 = {'Name': 'Dummy','Target Area' : '', 'Target Muscle': row['Target Muscle'], 'Exercise Category':  user_arr[0], 'Difficulty' : '','Movement': row['Movement'],  'Equipment' : '', 'Location': user_arr[2] , 'URL' :''}
+        df2 = {'Name': 'Dummy','Target Area' : '', 'Target Muscle': row['Target Muscle'], 'Exercise Category':  user_arr[0], 'Difficulty' : user_arr[1],'Movement': row['Movement'],  'Equipment' : '', 'Location': user_arr[2] , 'URL' :''}
         #print(df2)
         df = df.append(df2, ignore_index = True)
         #have to send df to function
@@ -433,13 +435,26 @@ def template_recommendations1(exercise_arr,user_arr,day):
         print('-------------,')
         df = df[:-1]
         #print(df)
-print('aojdpohvpfohfpbohbpoh,')
-template_recommendations1(exercise_template,user1,4)
+
+exercise_template = pd.read_sql('select * from "Four_Day_Template"', con=engine)
+exercise_template = exercise_template.replace('\n','', regex=True)
+exercise_template = exercise_template.applymap(lambda x: x.rstrip() if isinstance(x, str) else x)#strips trailing whitespace if it exists
+#print(exercise_template)
 
 
+user = pd.read_sql('select * from "user_list" ', con=engine)
+user = user.replace('\n','', regex=True)
+user = user.applymap(lambda x: x.rstrip() if isinstance(x, str) else x)#strips trailing whitespace if it exists
+#need exercise category, difficulty, location
+user = user[user['user_id'] == 2]
+#print(user)
+#print(user['username'])
+user = [user['exercise_category'][1],user['difficulty'][1], user['location'][1]]
+#print(user)
+num = int(sys.argv[17])
+template_recommendations1(exercise_template,user,num)
 
-
-
+print("user id: ",int(sys.argv[18]))
 '''
 print(target_arr)
 print('----------')
