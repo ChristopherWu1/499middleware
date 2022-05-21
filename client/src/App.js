@@ -7,6 +7,7 @@ import Recommendations from './Recommendations';
 import Add_Exercises from "./Add_Exercises";
 import Profile from "./Profile";
 import Register from "./Register";
+import Login from "./Login";
 
 /*
 <Route exact path="/" component={Recommendations} />
@@ -20,6 +21,17 @@ class App extends Component {
     super();
     this.state = {id: 0};
   }
+  
+  logout = (num) =>{
+    this.setState({id : num});
+    console.log(this.state.id)
+  }
+  setId = (num) =>{
+    
+    this.setState({id : num});
+    console.log(this.state.id);
+  }
+  /*
   getUserId = () =>{
     let username = prompt('enter username');
     let password = prompt('enter password');
@@ -55,17 +67,19 @@ class App extends Component {
   componentDidMount(){
   
     this.getUserId();
-  }
+  }*/
   render(){
 
   return (
     <div className="App">
       <Routes>
-      <Route exact path="/" element={<Recommendations id = {this.state.id}/>} />
+      <Route exact path="/" element={<Login parentCallback = {this.setId} parentLogout={this.logout}/>} />
       <Route exact path="/newExercise" element={<Add_Exercises id = {this.state.id}/>} />
       <Route exact path="/profile" element={<Profile id = {this.state.id}/>} />
       <Route exact path="/register" element={<Register id = {this.state.id} setId = {this.setId}/>} />
+      <Route exact path="/Recommendations" element={<Recommendations id = {this.state.id}/>} />
       </Routes>
+
        
     </div>
   );

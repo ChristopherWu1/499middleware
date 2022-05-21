@@ -59,6 +59,9 @@ function Recommendations(props) {
   const [num18,setNum18] = useState('');
   //console.log(num18);
 
+  //for choosing template
+  const [num19,setNum19] = useState('');
+
 
   const [sum, setSum] = useState([{}]);
 
@@ -295,6 +298,9 @@ function Recommendations(props) {
   })*/
   return (
     <div>
+      <Link to = {'/'}>
+        <h1>Home</h1>
+      </Link>
       <Link to = {'/newExercise'}>
         <h1>Add New Exercise</h1>
       </Link>
@@ -304,15 +310,8 @@ function Recommendations(props) {
       <Link to = {'/register'}>
         <h1>User Registration</h1>
       </Link>
-      {(typeof backendData.users === 'undefined') ? (
-        <p>loading...</p>
-      ) : (
-        backendData.users.map((user, i) => (
-          <p key={i}>{user}</p>
-        ))
-      )}
-      <p>{secondBackendData.string}</p>
-      <p>{secondBackendData.number}</p>
+
+      
       <form onSubmit={HandleSubmit}>
         <br/>
         <label>
@@ -355,6 +354,16 @@ function Recommendations(props) {
         </label> 
 
         <br />
+        <label>
+          Choose your template:
+          <select onChange={e => setNum19(e.target.value)}>
+            <option value = '1'>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </label>
+        <br />
 
         <label>
           Choose your day:
@@ -365,6 +374,7 @@ function Recommendations(props) {
             <option value="4">4</option>
           </select>
         </label>
+        <br />
 
         <input type="submit" value="Submit"></input>
 
