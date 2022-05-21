@@ -7,7 +7,7 @@ function Add_Exercises(props) {
   useEffect(() => {
     getExercises1();
   }, []);
-  const [user_id, set_user_id] = useState('');
+  //const [user_id, set_user_id] = useState('');
   const [exercise, set_exerise] = useState('');
   const [rating, set_rating] = useState('');
   const [sets, set_sets] = useState('');
@@ -92,18 +92,7 @@ function getUserId() {
 }
 */
 
-    function getExercises() {
-        fetch('http://localhost:3001/exercises',{method: 'GET'}
-        )
-          .then(response => {
-            return response.text();
-          })
-          .then(data => {
-            setExercises(data);
-            
-
-          });
-      }
+    
       function getExercises1() {
         let id = props.id;
         
@@ -140,6 +129,7 @@ function createExercise() {
     let reps = prompt('Enter amount of reps per set');
     let date = prompt('Enter date exercise is done');
     */
+   let user_id = props.id;
    console.log(user_id);
     fetch('http://localhost:3001/exercises', {
          method: 'POST',
@@ -242,12 +232,17 @@ function createExercise() {
           <Link to={`/`}>
           <h1> Home</h1>
           </Link>
+          <Link to={`/Profile`}>
+              <h1> Profile</h1>
+          </Link>
+
+            
+           <Link to= {`/Recommendations`}>
+            <h1>Recommendations</h1>
+          </Link>
 
           {exercises ? exercises : 'You have done no exercises'}
-          <br />
-          <label>
-          Enter User_Id: <input type="number" step = '1' onChange={e => set_user_id(e.target.value)} />
-          </label>
+          
           <br />
 
           <label>
@@ -278,17 +273,7 @@ function createExercise() {
 
 
       <button onClick={createExercise}>Add Exercise</button>
-      <p>----------------------------------------------</p>
-      <button onClick={getUser}>Get User</button>
-      <br />
-      {user ? user : 'There is no user'}
-          <br />
-          {exercise_names ? exercise_names : 'There are no exerciseses'}
-      <br />
       
-      {user_id_2 ? user_id_2 : 'There is no user_id from login'}
-      
-
          
         </div>
         

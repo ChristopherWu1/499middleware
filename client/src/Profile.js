@@ -55,6 +55,10 @@ function Profile(props) {
             <Link to = {'/newExercise'}>
             <h1>Add New Exercise</h1>
             </Link>
+            
+            <Link to= {`/Recommendations`}>
+            <h1>Recommendations</h1>
+          </Link>
 
 
               {user ? user : 'There is no user'}

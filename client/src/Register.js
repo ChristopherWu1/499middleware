@@ -18,7 +18,7 @@ function Register(props) {
     alert('form submitted');
     console.log(request);
     //
-    fetch(`http://localhost:3001/users/`, {
+    fetch(`http://localhost:3001/createUser`, {
       method: 'POST',
       mode: 'cors',
       headers: { "Content-Type": "application/json" },

@@ -419,8 +419,7 @@ def template_recommendations1(exercise_arr,user_arr,day):
     
     for index, row in df1.iterrows():
         #print(x)
-        print(row['Target Muscle'], "exercise with a ",row['Movement']," motion,")
-        
+        print(row['Target Muscle'], "exercise with a ",row['Movement']," motion,") 
         df2 = {'Name': 'Dummy','Target Area' : '', 'Target Muscle': row['Target Muscle'], 'Exercise Category':  user_arr[0], 'Difficulty' : user_arr[1],'Movement': row['Movement'],  'Equipment' : '', 'Location': user_arr[2] , 'URL' :''}
         #print(df2)
         df = df.append(df2, ignore_index = True)
@@ -446,10 +445,13 @@ user = pd.read_sql('select * from "user_list" ', con=engine)
 user = user.replace('\n','', regex=True)
 user = user.applymap(lambda x: x.rstrip() if isinstance(x, str) else x)#strips trailing whitespace if it exists
 #need exercise category, difficulty, location
-user = user[user['user_id'] == 2]
+id = int(sys.argv[18])
+#print(id)
+user = user[user['user_id'] == id]
 #print(user)
-#print(user['username'])
-user = [user['exercise_category'][1],user['difficulty'][1], user['location'][1]]
+#print(user['username'][2])
+user = [user['exercise_category'][id-1],user['difficulty'][id-1], user['location'][id-1]]
+#print(user)
 #print(user)
 num = int(sys.argv[17])
 template_recommendations1(exercise_template,user,num)

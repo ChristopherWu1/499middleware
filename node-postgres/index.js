@@ -62,7 +62,7 @@ app.post('/exercises', (req, res) => {
     })
   })
 
-  app.post('/users/', (req, res) => {
+  app.post('/createUser', (req, res) => {
     user_model.createUser(req.body)
     .then(response => {
       res.status(200).send(response);
@@ -72,7 +72,7 @@ app.post('/exercises', (req, res) => {
       res.status(500).send(error);
     })
   })
-  app.put('/users', (req, res) => {
+  app.post('/users', (req, res) => {
     user_model.loginUser(req.body)
     .then(response => {
       res.status(200).send(response);
