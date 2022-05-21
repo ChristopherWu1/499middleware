@@ -1,0 +1,11 @@
+.container{
+    display: block;
+}
+
+.BarChart{
+    display: inline-block;
+}
+
+.PieChart{
+    display: inline-block;
+}

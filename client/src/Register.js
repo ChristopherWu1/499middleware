@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
+import Quiz from "./Quiz/Quiz"
 function Register(props) {
   const [username, setUsername] = useState([{}]);
   const [password, setPassword] = useState([{}]);
@@ -51,6 +52,7 @@ function Register(props) {
         </label>
         <input type="submit" value="Submit"></input>
       </form>
+      <Quiz></Quiz>
       <Link to = {'/newExercise'}>
         <h1>Add New Exercise</h1>
       </Link>

@@ -3,6 +3,7 @@ import './style.css'
 import { Link } from "react-router-dom";
 import Nav from './/NavBar/NavBar'
 
+
 function Recommendations(props) {
   const [backendData, setBackendData] = useState([{}])
 
