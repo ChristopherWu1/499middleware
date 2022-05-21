@@ -1,6 +1,8 @@
 import React, {useState, useEffect,Compnent} from 'react';
 import Autosuggest from 'react-autosuggest';
 import { Link } from "react-router-dom";
+import Nav from './/NavBar/NavBar'
+import Analytics from './/Analytics/Analytics'
 function Profile(props) {
     const [user, setUser] = useState('');
     useEffect(() => {
@@ -39,8 +41,15 @@ function Profile(props) {
               console.log(theId);
               theId = theId.split('"')[2];
               console.log(theId);
+
+              let cat = data.split('exercise_category')[1];
+              console.log(cat);
+              cat = cat.split('"')[2];
+              console.log(cat);
+
+
               
-              let str = "hello, " + theName + " . These are your preferences. \n Location: " + theLocation + "\n Difficulty: " + theDifficulty;
+              let str = "Hello, " + theName + " . These are your preferences. \n Location: " + theLocation + "\n Difficulty: " + theDifficulty + " Exercise Category: " + cat;
               //return(data);
               setUser(str);
             });
@@ -48,20 +57,10 @@ function Profile(props) {
 
           return (
             <div>
-              <Link to={`/`}>
-              <h1> Home</h1>
-              </Link>
-
-            <Link to = {'/newExercise'}>
-            <h1>Add New Exercise</h1>
-            </Link>
-            
-            <Link to= {`/Recommendations`}>
-            <h1>Recommendations</h1>
-          </Link>
-
+              <Nav></Nav>
 
               {user ? user : 'There is no user'}
+              <Analytics></Analytics>
             </div>
             
           );

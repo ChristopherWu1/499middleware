@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
+import Nav from './/NavBar/NavBar'
+
 function Login(props) {
   const [username, setUsername] = useState([{}]);
   const [password, setPassword] = useState([{}]);
@@ -38,7 +40,7 @@ function Login(props) {
   }
   return (
     <div>
-        <h1>log in</h1>
+        <h1>Login</h1>
       <form onSubmit={HandleSubmit}>
       <label>
           Enter username: <input type="text" onChange={e => setUsername(e.target.value)}/>
@@ -53,16 +55,8 @@ function Login(props) {
         <h1>Register</h1>
       </Link>
       <nav style={{display: show ? "block" : "none"}}>
-      <Link to={`/Profile`}>
-              <h1> Profile</h1>
-              </Link>
-
-            <Link to = {'/newExercise'}>
-            <h1>Add New Exercise</h1>
-            </Link>
-            <Link to= {`/Recommendations`}>
-        <h1>Recommendations</h1>
-      </Link>
+       
+        <Nav></Nav>
     </nav>
     </div>
   )
