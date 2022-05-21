@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './style.css'
 import { Link } from "react-router-dom";
-
+import Nav from './/NavBar/NavBar'
 
 function Recommendations(props) {
   const [backendData, setBackendData] = useState([{}])
@@ -298,19 +298,12 @@ function Recommendations(props) {
   })*/
   return (
     <div>
-      <Link to = {'/'}>
-        <h1>Home</h1>
-      </Link>
-      <Link to = {'/newExercise'}>
-        <h1>Add New Exercise</h1>
-      </Link>
-      <Link to = {'/profile'}>
-        <h1>User Profile</h1>
-      </Link>
-      <Link to = {'/register'}>
-        <h1>User Registration</h1>
-      </Link>
+      
 
+      <Nav></Nav>
+      <h1> Recommendations</h1>
+      <br/>
+      <br/>
       
       <form onSubmit={HandleSubmit}>
         <br/>

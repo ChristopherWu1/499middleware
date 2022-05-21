@@ -1,6 +1,7 @@
 import React, {useState, useEffect,Compnent} from 'react';
 import Autosuggest from 'react-autosuggest';
 import { Link } from "react-router-dom";
+import Nav from './/NavBar/NavBar'
 
 function Add_Exercises(props) {
     const [exercises, setExercises] = useState(false);
@@ -229,17 +230,11 @@ function createExercise() {
 
       return (
         <div>
-          <Link to={`/`}>
-          <h1> Home</h1>
-          </Link>
-          <Link to={`/Profile`}>
-              <h1> Profile</h1>
-          </Link>
-
-            
-           <Link to= {`/Recommendations`}>
-            <h1>Recommendations</h1>
-          </Link>
+          
+          <Nav> </Nav>
+          <h1>Add Exercise you have done</h1>
+          <br />
+          <br />
 
           {exercises ? exercises : 'You have done no exercises'}
           
