@@ -82,6 +82,18 @@ app.post('/exercises', (req, res) => {
       res.status(500).send(error);
     })
   })
+  app.put('/users', (req, res) => {
+    user_model.updateUser(req.body)
+    .then(response => {
+      res.status(200).send(response);
+    })
+    .catch(error => {
+      console.log('test3');
+      res.status(500).send(error);
+    })
+  })
+
+  
 
   app.delete('/users', (req, res) => {
     user_model.deleteUser(req.body)

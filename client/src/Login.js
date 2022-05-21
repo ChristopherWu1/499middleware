@@ -5,6 +5,9 @@ import Nav from './/NavBar/NavBar'
 function Login(props) {
   const [username, setUsername] = useState([{}]);
   const [password, setPassword] = useState([{}]);
+
+
+
   const [show, setShow]=useState(false);
   var request = { "username":username , "password": password };
   //const [serverResponse, setResponse]=useState([{}]);
@@ -33,7 +36,7 @@ function Login(props) {
         var numberPattern = /\d+/g;
         let num = data.match( numberPattern ).join('');
         num = parseInt(num);
-        props.parentCallback(num)
+        props.parentCallback(num);
         setShow(true);
       });
 

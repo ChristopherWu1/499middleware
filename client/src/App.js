@@ -9,6 +9,7 @@ import Profile from "./Profile";
 import Register from "./Register";
 import Login from "./Login";
 
+
 /*
 <Route exact path="/" component={Recommendations} />
 <Route exact path="/newExercise" component={Add_Exercises} />

@@ -9,6 +9,34 @@ function Profile(props) {
       getUser();
     }, []);
 
+
+  const [exercise_category, setExerciseCategory] = useState([{}]);
+  const [difficulty, setDifficulty] = useState([{}]);
+  const [location, setLocation] = useState([{}]);
+  const [id,setId] = useState([{}]);
+
+  var request = { "exercise_category":exercise_category , "difficulty": difficulty, "location":location, "id":props.id};
+  var HandleSubmit = function (event) {
+    event.preventDefault();
+ 
+    alert('form submitted');
+    console.log(request);
+    //
+    fetch('http://localhost:3001/users', {
+      method: 'PUT',
+      mode: 'cors',
+      headers: { "Content-Type": "application/json" },
+      //convert react state to json and send it as the post body
+      body: JSON.stringify(request)
+    }).then(response => {
+        return response.text();
+      })
+      .then(data => {
+        getUser();
+      });
+
+  }
+
     function getUser() {
         
         //let id = prompt('Enter  user_id');
@@ -60,7 +88,40 @@ function Profile(props) {
               <Nav></Nav>
 
               {user ? user : 'There is no user'}
-              <Analytics></Analytics>
+        <br />
+
+        <form onSubmit={HandleSubmit}>
+          <label>
+            Enter Exercise Category:
+            <select onChange={e => setExerciseCategory(e.target.value)}>
+              <option value="Strength">Strength</option>
+              <option value="Flexibility">Flexibility</option>
+              <option value="Aerobic">Aerobic</option>
+            </select>
+          </label>
+          <label style={{ paddingLeft: '50px' }}>
+            Enter Difficulty: 
+            <select onChange={e => setDifficulty(e.target.value)}>
+              <option value="Beginner">Beginner</option>
+              <option value="Intermediate">Intermediate</option>
+              <option value="Advanced">Advanced</option>
+            </select>
+          </label>
+        
+          <label style={{ paddingLeft: '50px' }}>
+            Enter Location:
+            <select onChange={e => setLocation(e.target.value)}>
+              <option value="Home">Gym only</option>
+              <option value="Gym">Home only</option>
+              <option value="Both">Both gym and home</option>
+              <option value="Special">Specialized equipment</option>
+            </select>
+          </label>
+          <br/>
+
+        <input type="submit" value="Submit"></input>
+      </form>
+             
             </div>
             
           );

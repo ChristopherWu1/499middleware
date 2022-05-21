@@ -444,13 +444,14 @@ exercise_template = exercise_template.applymap(lambda x: x.rstrip() if isinstanc
 user = pd.read_sql('select * from "user_list" ', con=engine)
 user = user.replace('\n','', regex=True)
 user = user.applymap(lambda x: x.rstrip() if isinstance(x, str) else x)#strips trailing whitespace if it exists
+user = user.reset_index()
 #need exercise category, difficulty, location
 id = int(sys.argv[18])
-#print(id)
 user = user[user['user_id'] == id]
+user = user.reset_index()
 #print(user)
-#print(user['username'][2])
-user = [user['exercise_category'][id-1],user['difficulty'][id-1], user['location'][id-1]]
+#print(user['username'][0])
+user = [user['exercise_category'][0],user['difficulty'][0], user['location'][0]]
 #print(user)
 #print(user)
 num = int(sys.argv[17])

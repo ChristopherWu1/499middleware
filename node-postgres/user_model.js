@@ -78,11 +78,37 @@ const deleteUser = (aId) => {
       pool.end
     })
   }
+
+  const updateUser = (body) => {
+    return new Promise(function(resolve, reject) {
+      let exercise_category_1 = body.exercise_category;
+      let difficulty1 = body.difficulty;
+      let location1= body.location;
+      let id1 = body.id;
+      /*
+      let Exercise_category1 = body.exercise_category;
+      let Difficulty1 = body.difficulty;
+      let Location1= body.location;
+      let Name1 = body.Name;*/
+      console.log(body,exercise_category_1,difficulty1,location1,id1);
+
+      pool.query('UPDATE "user_list" SET "exercise_category" = ($1), "difficulty" = ($2), "location" = ($3) WHERE "user_id" = ($4) returning *', [ exercise_category_1,difficulty1,location1,id1], (error, results) => {
+        if (error) {
+          reject(error)
+        }
+        console.log(results.rows);
+        resolve(results.rows);
+      })
+      pool.end
+    })
+
+  }
   module.exports = {
     deleteUser,
     getUser1,
     createUser,
-    loginUser
+    loginUser,
+    updateUser
   }
 
 
