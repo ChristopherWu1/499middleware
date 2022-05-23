@@ -1,8 +1,8 @@
 import React, {useState, useEffect,Compnent} from 'react';
 import Autosuggest from 'react-autosuggest';
 import { Link } from "react-router-dom";
-import Nav from './/NavBar/NavBar'
-
+import Nav from '../../Components/NavBar/NavBar'
+import './Exercise.css'
 function Add_Exercises(props) {
     const [exercises, setExercises] = useState(false);
   useEffect(() => {
@@ -229,49 +229,29 @@ function createExercise() {
         
 
       return (
-        <div>
+        <div className='Background'>
           
           <Nav> </Nav>
-          <h1>Add Exercise you have done</h1>
-          <br />
-          <br />
+          <div className='Recommend_Contents Card '>
+              <h1 class = "Title">Add Exercise you have done</h1>
+              
 
-          {exercises ? exercises : 'You have done no exercises'}
+              {exercises ? exercises : 'You have done no exercises'}
+              
+              <br />
+
+            
+            <input className = 'login-menu username' placeholder = 'Enter exercise:' type="text" onChange={e => set_exerise(e.target.value)} />
+            <input className = 'login-menu username' placeholder = 'Enter Rating: ' type="number"min = '1' max = '5' step = '0.5' onChange={e => set_rating(e.target.value)} />
+            <input  className = 'login-menu username' placeholder = 'Enter number of sets: ' type="number" step = '1' onChange={e => set_sets(e.target.value)} />
+            <input className = 'login-menu username' placeholder = 'Enter number of reps done for each set:'  type="number" step = '1' onChange={e => set_reps(e.target.value)} />
+            <input className = 'login-menu username' placeholder = 'Enter date the exercise was done: ' type="date" onChange={e => set_date(e.target.value)} />
+
+            <button className='Login_1' onClick={createExercise}>Add Exercise</button>
           
-          <br />
-
-          <label>
-          Enter exercise: <input type="text" onChange={e => set_exerise(e.target.value)} />
-          </label>
-          <br/>
-
-          <label>
-          Enter Rating: <input type="number"min = '1' max = '5' step = '0.5' onChange={e => set_rating(e.target.value)} />
-          </label>
-          <br />
-
-          <label>
-          Enter number of sets: <input type="number" step = '1' onChange={e => set_sets(e.target.value)} />
-          </label>
-          <br />
-
-          <label>
-          Enter number of reps done for each set: <input type="number" step = '1' onChange={e => set_reps(e.target.value)} />
-          </label>
-          <br />
-
-          <label>
-          Enter date the exercise was done: <input type="date" onChange={e => set_date(e.target.value)} />
-          </label>
-
-          <br />
-
-
-      <button onClick={createExercise}>Add Exercise</button>
-      
-         
+            
+            </div>
         </div>
-        
       );
          
       }

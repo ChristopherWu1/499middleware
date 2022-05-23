@@ -15,7 +15,7 @@ export const SidebarData = [
     {
         title: 'Recommendations',
         path: '/Recommendations',
-        //icon: <FaIcons.FaWeightHanging/>,
+        icon: <AiIcons.AiFillReconciliation/>,
         cName: 'nav-text'
     },
 
@@ -28,7 +28,7 @@ export const SidebarData = [
     {
         title: 'Login Page',
         path: '/',
-        icon: <IoIcons.IoIosCopy/>,
+        icon: <AiIcons.AiOutlineLogin/>,
         cName: 'nav-text'
     }
 ]

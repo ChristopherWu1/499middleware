@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* input,button{
+    appearance: none;
+    background: none;
+    border: none;
+    outline: none;
+} */
+
+h1{
+    padding: 50px;
+}
+.card{
+    width: 500px;
+    height: 90vh; 
+    margin: auto;
+    padding: 0px;
+    text-align: center;
+    background-color: white;
+}
+
+.login-menu{
+    width: 70%;
+    padding: 12px 20px;
+    margin: 10px ;
+  
+    box-sizing: border-box;
+    border: none;
+    
+    background-color: #ddd;
+    font-weight: lighter;
+    border-radius: 5px;
+}
+
+.password{
+    margin-bottom: 50px;
+}
+
+.Login {
+    width: 70%;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: rgb(255, 194, 192);
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+}
+.Login:hover{
+    cursor: pointer;
+    background-color:hotpink;
+}
+
+.Register{
+    
+    color: lightgray;
+    text-decoration: none;
+    font-size: 8px;
+}
+
+.Register:hover{
+    color: 333;
+}
+
+.Member{
+    margin-top: 50%;
+}
+
+
+.background{
+    background-image: linear-gradient(to bottom right, pink, blue);
+    height: 100vh;
+    width: 100vw;
+    padding-top: 5vh;
+}
+
+.LoginIcon{
+    font-size: 75px;
+    background-color: #ddd;
+    border-radius: 100%;
+}

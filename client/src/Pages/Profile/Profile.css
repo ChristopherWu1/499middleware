@@ -1,0 +1,91 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.Profile_content{
+    padding-left:250px;
+}
+
+.Profile{
+    
+    height: 100vh;
+    width: 100vw;
+    background-color: #eee;
+    position: absolute;
+}
+
+.Card, .Card_1{
+    background-color: white;
+    width:50%;
+    border-radius: 5px;
+    text-align: left;
+    margin: 10px;
+}
+
+.Card_1{
+    width: 75%;
+}
+
+
+.Icon{
+    padding: 10px 50px;
+    display: inline-block;
+    
+}
+
+.UserName{
+    padding: 10px 50px;
+    bottom: 30px;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+}
+
+.Head{
+    padding: 10px 50px;
+    margin: 0px;
+}
+
+.Category, .Difficulty, .Special{
+    display: block;
+    text-align: left;
+    padding: 10px 50px;
+}
+
+.selected{
+    padding: 10px 25px;
+    border: 2px solid #000;
+    font-weight: bold;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+
+}
+
+.form_grid{
+    display: grid;
+}
+
+.from_submit{
+    width: 25%;
+    padding: 10px;
+    margin: auto;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: lightblue;
+    border: none;
+    border-radius: 5px
+}
+
+
+.from_submit:hover{
+    cursor: pointer;
+    background-color:blue;
+}
