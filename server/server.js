@@ -60,10 +60,12 @@ app.post('/data',/*cors(corsOptions),*/(req, res) => {
     console.log(num17);
     var num18 = req.body.num18;
     console.log(num18);
+    var num19 = req.body.num19;
+    console.log(num1);
 
 
     //call python script
-    const python = spawn('python3', ['algorithms3.py',num1,num2,num3,num4,num5,num6,num7,num8,num9,num10,num11,num12,num13,num14,num15,num16,num17,num18]);
+    const python = spawn('python3', ['algorithms3.py',num1,num2,num3,num4,num5,num6,num7,num8,num9,num10,num11,num12,num13,num14,num15,num16,num17,num18,num19]);
     python.stdout.on('data', function (data) {
         dataToSend = data.toString().split(',');
         console.log(typeof dataToSend);
