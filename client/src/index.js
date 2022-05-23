@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import Add_Exercises from './Add_Exercises';
-import Recommendations from './Recommendations';
+
 
 import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
