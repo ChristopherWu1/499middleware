@@ -369,7 +369,7 @@ weight_arr = []
 if sys.argv[16] == 'Yes':
     #print('yes,')
     for x,y in zip(sys.argv[4:10],sys.argv[10:16]):
-        print(x,y,",")
+        #print(x,y,",")
         if x != "":
             num = int(y)
             num = num/100
@@ -429,6 +429,7 @@ def template_recommendations1(exercise_arr,user_arr,day):
         #print(x[0],',',x[1])
         recommendations = target_recommendations('Dummy',create_cosine_similarities(['Target Muscle','Exercise Category','Movement','Location'],None,df ),df )
         #print(target_recommendations('Dummy',create_cosine_similarities(['Target Muscle','Exercise Category','Push Pull Stretch Aerobic','Location'],None,df ),df ))
+        
         for y in recommendations:
             print(y,",")
         print('-------------,')
@@ -461,7 +462,7 @@ user = [user['exercise_category'][0],user['difficulty'][0], user['location'][0]]
 num = int(sys.argv[17])
 template_recommendations1(exercise_template,user,num)
 
-print("user id: ",int(sys.argv[18]))
+#print("user id: ",int(sys.argv[18]))
 '''
 print(target_arr)
 print('----------')

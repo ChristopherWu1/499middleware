@@ -5,6 +5,7 @@ const port = 3001
 const exercises_model = require('./exercises_model')
 const user_model = require('./user_model')
 const exercise_list_model = require('./exercises_list_model.js')
+const questions = require('./db')
 
 app.use(express.json())
 app.use(function (req, res, next) {
@@ -116,6 +117,21 @@ app.post('/exercises', (req, res) => {
       res.status(500).send(error);
     })
   })
+  app.get('/questions', (req, res) => {
+    res.json(questions)
+  });
+  app.get('/questions/question1', (req, res) => {
+    res.json(questions.question1)
+  });
+  //get question2 from db
+  app.get('/questions/question2', (req, res) => {
+    res.json(questions.question2)
+  });
+  //get question3 from db
+  app.get('/questions/question3', (req, res) => {
+    res.json(questions.question3)
+  });
+  
 
   
 app.listen(port, () => {

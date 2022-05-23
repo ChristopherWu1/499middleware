@@ -9,6 +9,7 @@ const cors = require('cors')
 //required to use python script
 const { spawn } = require('child_process');
 
+
 //CORS enabled for all origins
 app.use(cors());
 app.use(express.json());//used to parse json bodies
@@ -60,8 +61,8 @@ app.post('/data',/*cors(corsOptions),*/(req, res) => {
     console.log(num17);
     var num18 = req.body.num18;
     console.log(num18);
-    var num19 = req.body.num19;
-    console.log(num1);
+    var num19 =  req.body.num19;
+    console.log(num19);
 
 
     //call python script
@@ -74,4 +75,22 @@ app.post('/data',/*cors(corsOptions),*/(req, res) => {
     });
 
 })
+
+app.get('/questions',(req,res)=>{
+    res.json(questions)
+});
+//get question1 from db
+app.get('/questions/question1',(req,res)=>{
+    res.json(questions.question1)
+});
+//get question2 from db
+app.get('/questions/question2',(req,res)=>{
+    res.json(questions.question2)
+});
+//get question3 from db
+app.get('/questions/question3',(req,res)=>{
+    res.json(questions.question3)
+});
+
+
 app.listen(5000, () => { console.log("Server started on port 5000") })

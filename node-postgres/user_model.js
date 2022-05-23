@@ -1,6 +1,6 @@
 const Pool = require('pg').Pool
 const pool = new Pool({
-  user: 'christopherwu',
+  user: 'postgres',
   host: 'localhost',
   database: 'exercise_db',
   password: '',
@@ -61,6 +61,10 @@ const deleteUser = (aId) => {
       let Username1 = body.username;
       let Password1= body.password;
       let Name1 = body.name;
+      let Difficulty1 =body.difficulty
+      let Location=body.Location
+      let exercise_category=body.exercise_category
+  
       /*
       let Exercise_category1 = body.exercise_category;
       let Difficulty1 = body.difficulty;
@@ -68,7 +72,7 @@ const deleteUser = (aId) => {
       let Name1 = body.Name;*/
       console.log(body,Username1,Password1,Name1);
 
-      pool.query('INSERT INTO "user_list" ("user_id","username","password","Name") VALUES ((select max("user_id") from "user_list") + 1,$1,$2,$3) RETURNING "user_id"', [ Username1,Password1,Name1], (error, results) => {
+      pool.query('INSERT INTO "user_list" ("user_id","username","password","Name","difficulty","location","exercise_category") VALUES ((select max("user_id") from "user_list") + 1,$1,$2,$3,$4,$5,$6) RETURNING "user_id"', [ Username1,Password1,Name1,Difficulty1,Location,exercise_category], (error, results) => {
         if (error) {
           reject(error)
         }
