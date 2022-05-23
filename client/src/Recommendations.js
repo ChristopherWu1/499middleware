@@ -174,7 +174,7 @@ function Recommendations(props) {
   };
 
   var nums = { "num1": num1, "num2": num2,"num3": num3 ,'num4': num4, 'num5' : num5, 'num6' : num6, 'num7' : num7, 'num8' : num8, 'num9' : num9,
-  "num10": num10, "num11": num11, "num12": num12, "num13": num13, "num14": num14, "num15": num15, "num16": num16, "num17": num17, 'num18': num18};
+  "num10": num10, "num11": num11, "num12": num12, "num13": num13, "num14": num14, "num15": num15, "num16": num16, "num17": num17, 'num18': num18, 'num19':num19};
   //react function components must start with capitalized letters
   var HandleSubmit = function (event) {
     event.preventDefault();
@@ -252,6 +252,12 @@ function Recommendations(props) {
         sum.sum  = undefined;
         return;
       }
+    }
+    if( num19 == "4" && num17 == "5")
+    {
+      alert('you attempted to choose a day for a template that does not have the day, nothing has run');
+      sum.sum  = undefined;
+      return;
     }
     /*
     else{
@@ -351,10 +357,8 @@ function Recommendations(props) {
         <label>
           Choose your template:
           <select onChange={e => setNum19(e.target.value)}>
-            <option value = '1'>1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
+            <option value="4">4 Day template</option>
+            <option value="5">5 Day template</option>
           </select>
         </label>
         <br />
@@ -366,6 +370,7 @@ function Recommendations(props) {
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
+            <option value="5">5</option>
           </select>
         </label>
         <br />

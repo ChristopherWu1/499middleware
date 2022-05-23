@@ -435,7 +435,11 @@ def template_recommendations1(exercise_arr,user_arr,day):
         df = df[:-1]
         #print(df)
 
-exercise_template = pd.read_sql('select * from "Four_Day_Template"', con=engine)
+if(sys.argv[19] == "5"):
+    exercise_template = pd.read_sql('select * from Five_Day_Template', con=engine)
+elif(sys.argv[19] == "4"):
+    exercise_template = pd.read_sql('select * from "Four_Day_Template"', con=engine)
+
 exercise_template = exercise_template.replace('\n','', regex=True)
 exercise_template = exercise_template.applymap(lambda x: x.rstrip() if isinstance(x, str) else x)#strips trailing whitespace if it exists
 #print(exercise_template)
