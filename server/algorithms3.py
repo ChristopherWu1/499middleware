@@ -419,7 +419,7 @@ def template_recommendations1(exercise_arr,user_arr,day):
     
     for index, row in df1.iterrows():
         #print(x)
-        print(row['Target Muscle'], "exercise with a ",row['Movement']," motion,") 
+        print(row['Target Muscle'], "exercise with a ",row['Movement']," motion for", row['Sets'], "sets of", row['Reps'], "reps.,") 
         df2 = {'Name': 'Dummy','Target Area' : '', 'Target Muscle': row['Target Muscle'], 'Exercise Category':  user_arr[0], 'Difficulty' : user_arr[1],'Movement': row['Movement'],  'Equipment' : '', 'Location': user_arr[2] , 'URL' :''}
         #print(df2)
         df = df.append(df2, ignore_index = True)
@@ -440,6 +440,14 @@ if(sys.argv[19] == "5"):
     exercise_template = pd.read_sql('select * from Five_Day_Template', con=engine)
 elif(sys.argv[19] == "4"):
     exercise_template = pd.read_sql('select * from "Four_Day_Template"', con=engine)
+elif(sys.argv[19] == "3"):
+    exercise_template = pd.read_sql('select * from "three_day_template"', con=engine)
+elif(sys.argv[19] == "3 stretch"):
+    exercise_template = pd.read_sql('select * from "three_day_template_stretch"', con=engine)
+elif(sys.argv[19] == "4 stretch"):
+    exercise_template = pd.read_sql('select * from "four_day_template_stretch"', con=engine)
+elif(sys.argv[19] == "5 stretch"):
+    exercise_template = pd.read_sql('select * from "five_day_template_stretch"', con=engine)
 
 exercise_template = exercise_template.replace('\n','', regex=True)
 exercise_template = exercise_template.applymap(lambda x: x.rstrip() if isinstance(x, str) else x)#strips trailing whitespace if it exists

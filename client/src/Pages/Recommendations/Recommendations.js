@@ -255,6 +255,23 @@ function Recommendations(props) {
     }
      if(num19 === "4" && num17 === "5")
     {
+      console.log(num19[0]);
+      alert('you attempted to choose a day for a template that does not have the day, nothing has run');
+      sum.sum  = undefined;
+      return;
+    }
+    if(num19 === "3" && ((num17 === "5")||(num17 === "4")))
+    {
+      console.log(num19[0]);
+      alert('you attempted to choose a day for a template that does not have the day, nothing has run');
+      sum.sum  = undefined;
+      return;
+    }
+    console.log(parseInt(num19[0]));
+    console.log(parseInt(num17));
+    if(parseInt(num19[0]) < parseInt(num17))
+    {
+      console.log(num19[0]);
       alert('you attempted to choose a day for a template that does not have the day, nothing has run');
       sum.sum  = undefined;
       return;
@@ -359,8 +376,13 @@ function Recommendations(props) {
             <label>
               Choose your template:
               <select onChange={e => setNum19(e.target.value)}>
+              <option value="3">3 Day template</option>
                 <option value="4">4 Day template</option>
                 <option value="5">5 Day template</option>
+                <option value="3 stretch">3 Day stretch template</option>
+                <option value="4 stretch">4 Day stretch template</option>
+                <option value="5 stretch">5 Day stretch template</option>
+
               </select>
             </label>
             <br />
